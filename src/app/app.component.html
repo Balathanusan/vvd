@@ -1,0 +1,46 @@
+<ion-app>
+	<!-- <ion-split-pane contentId="main-content"> -->
+		<ion-menu contentId="main-content" type="overlay">
+			<div class="bg"></div>
+			<ion-header class="header">
+				<img src="../assets/images/user-circle.png" style="width: 50px;height: 50px;margin-left: 10px;margin-right: 5px;border-radius: 40px;">
+				<div>
+					<ion-row>
+						<ion-label style="color:white;margin-left:10px;white-space: normal;">Hi,{{getUsername}}</ion-label>
+					</ion-row>
+					<ion-row>
+						<div class="item_inner d-flex">
+							<ion-icon class="ion-text-start" slot="start" name="call" style="color: white ; margin-left: 10px;" ></ion-icon>
+						<ion-label style="color: white;margin-left: 5px;font-size: 11px;margin-top: 3px;white-space: normal;">{{getUserEmail}}</ion-label>
+					</div>
+
+					</ion-row>
+
+					<ion-row>
+						<div class="item_inner d-flex">
+							
+							<ion-label style="color:white;margin-left:10px;white-space: normal;font-size: 11px;margin-top: 7px;">Reward Points: {{getrewardpoints}}</ion-label>
+						</div>
+
+					</ion-row>
+				</div>
+			</ion-header>
+			<ion-content>
+				<ion-list lines="none">
+					<ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+						<ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+							<div class="item_inner d-flex">
+								<ion-icon class="ion-text-start" slot="start" [class]="p.icon" ></ion-icon>
+								<ion-label>
+									{{ p.title | translate}}
+									<!-- <h2 style="font-size: 13px;">{{ p.title | translate}}</h2> -->
+								</ion-label>
+							</div>
+						</ion-item>
+					</ion-menu-toggle>
+				</ion-list>
+			</ion-content>
+		</ion-menu>
+		<ion-router-outlet id="main-content"></ion-router-outlet>
+	<!-- </ion-split-pane> -->
+</ion-app>

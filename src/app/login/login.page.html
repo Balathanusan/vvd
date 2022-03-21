@@ -1,0 +1,48 @@
+<ion-header class="bg_transparent">
+	<div class="logo_box ion-text-center">
+		<div class="logo">
+			<img src="../../assets\images\vvd-logo-big.png">
+			<!-- <h2>{{'VVD' | translate}}</h2> -->
+			<!-- <h6>Sale</h6> -->
+		</div>
+	</div>
+
+</ion-header>
+
+<ion-content>
+    <div class="loginForm">
+      <ion-list lines="none">
+        <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()">         
+          <div class="input-group mb-3">
+            <ion-item>             
+              <!-- <ion-input type="text"  formControlName="username" required placeholder="Mobile Number"></ion-input> -->
+              <ion-input type="email" name="username" formControlName="username" required placeholder="Mobile Number"></ion-input>
+            </ion-item>
+            <!-- <ng-container *ngFor="let validation of form_messages.username">
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback"> 
+                <div *ngIf="f.username.errors.required">username is required</div>
+             </div>
+            </ng-container> -->
+          </div>
+          <div class="input-group mb-4 item">
+              <ion-item>             
+                <ion-input type="password" class="formControl" formControlName="password"  required placeholder="Password">
+                </ion-input>
+              </ion-item>
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">
+                          Password must be at least 6 characters
+                  </div>
+              </div>
+          </div>           
+        </form>
+      </ion-list>
+    </div>
+</ion-content>
+<ion-footer>
+  <div style="padding: 3px;margin-bottom: 20px;display: flex;
+  justify-content: center;">
+    <span style="color: white;size: inherit;">All Rights Reasoned by TVS and SONS private limited</span>
+  </div>
+</ion-footer>

@@ -1,0 +1,347 @@
+ion-header {
+	background: var(--bg-color);
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 83px;
+		top: 0;
+		left: 0;
+		display: block;
+		background: var(--primary);
+
+	}
+
+	ion-toolbar ion-title {
+		h2 {
+			margin: 0;
+			font-size: .8rem;
+			font-weight: 300;
+			line-height: 55px;
+			padding-top: 12px;
+			max-width: calc(100% - 50px);
+			overflow: hidden;
+
+			small {
+				display: block;
+				line-height: 11px;
+				font-size: .6rem;
+			}
+
+			strong {
+				display: block;
+				font-size: 1.2rem;
+				font-weight: 400;
+				line-height: normal;
+			}
+		}
+
+		span {
+			&.cart_icon {
+				position: relative;
+				min-width: 23px;
+
+				ion-badge {
+					background: var(--secondary);
+					--background: var(--transparent);
+					--color: var(--white);
+					--padding-bottom: 0;
+					--padding-end: 0;
+					--padding-start: 0;
+					--padding-top: 0;
+					border-radius: 50%;
+					width: 17px;
+					height: 17px;
+					line-height: 15px;
+					display: block;
+					font-size: 0.45rem !important;
+					position: absolute;
+					top: 12px;
+					right: 0;
+				}
+
+				ion-icon {
+					position: relative;
+					top: 3px;
+					font-size: 1.2rem;
+				}
+			}
+		}
+
+
+	}
+
+	.search_box {
+		background: var(--white);
+		width: calc(100% - 10px);
+		border-radius: 3px;
+		margin: 0 auto;
+		padding: 0 15px;
+		position: relative;
+		overflow: hidden;
+		min-height: 45px;
+		z-index: 99;
+		box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
+
+		ion-icon {
+			color: var(--text-light);
+			font-size: 1.4rem;
+			min-width: 35px;
+			height: 35px;
+			line-height: 35px;
+			z-index: 99;
+			opacity: .5;
+
+			&.zmdi-tune {
+				font-size: 1.3rem;
+				left: unset;
+				right: 0;
+				z-index: 99;
+			}
+		}
+
+		ion-searchbar {
+			--background: var(--transparent) !important;
+			--color: var(--text-light);
+			--placeholder-opacity: 1;
+			--placeholder-font-weight: 400 !important;
+			--box-shadow: none !important;
+		}
+	}
+}
+.header_banner {
+	height:140px;
+	min-height:140px;
+	margin-top: 20px;
+	padding: 9px;
+}
+.slideroption{
+	max-width: 100%;
+	max-height: 100% !important;
+	border-radius: 5px;
+
+		.slide-zoom{
+			max-width: 100%;
+			max-height: 100% !important;
+			img{
+				max-width:100%;
+				max-height:100%;
+				border-radius: 5px;
+			}
+		}
+
+}
+
+
+// .swiper-container {
+// 	height: 250px;
+// 	width: 100%;
+// }
+
+// .swiper-wrapper {
+// 	width: 150px;
+// 	height: 250px;
+// 	min-height: 50px;
+// } 
+.swiper-slide img{
+	width: 100% !important;
+}
+.cell-class {
+	border-color: black; 
+	border-width: .01em; 
+	border-style:solid; margin-bottom : -1px;
+	background-color: lightgrey
+  }
+
+.like_to_order {
+	background: var(--white);
+	padding-top: 15px;
+	box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.1);
+
+	h2 {
+		margin: 0;
+		color: var(--text-dark2);
+		font-size: .9rem;
+		font-weight: 400;
+		padding: 0 15px 15px 15px;
+	}
+
+	.scroll_container {
+		width: 100%;
+		overflow-x: scroll;
+		white-space: nowrap;
+		height: auto;
+
+		.item_srcoll {
+			display: inline-block;
+			margin: 0 3px;
+			width: 95px;
+
+			.img_box {
+				width: 95px;
+				height: 95px;
+				border-radius: 10px;
+				margin-bottom: 13px;
+			}
+
+			.item_detail {
+				white-space: normal;
+				h3 {
+					margin: 0;
+					font-size: .93rem;
+					font-weight: 400;
+					color: var(--text-dark2);
+					margin-bottom: 3px;
+				}
+
+				h4 {
+					margin: 0;
+					font-size: .6rem;
+					font-weight: 400;
+					color: var(--text-light);
+				}
+
+			}
+
+			&:first-child {
+				margin-left: 15px;
+			}
+
+			&:last-child {
+				margin-right: 15px;
+			}
+		}
+
+
+	}
+}
+
+
+.restaurants_near_you {
+	h2 {
+		margin: 0;
+		color: var(--text-dark);
+		font-size: .95rem;
+		font-weight: 500;
+		padding: 0 15px 10px 15px;
+	}
+
+	ion-list {
+		background: var(--transparent) !important;
+		padding: 0;
+
+		ion-item {
+			margin-bottom: 10px;
+			--background: var(--white) !important;
+			--padding-start: 0;
+			--inner-padding-end: 0px;
+			--inner-min-height: unset !important;
+			position: relative;
+			overflow: hidden;
+			width: calc(100% - 10px);
+			margin: 0 auto;
+			border-radius: 7px;
+			box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.1);
+			margin-bottom: 10px;
+
+			.item_ineer {
+				width: 100%;
+
+				.img_box {
+					width: 100%;
+					height: 155px;
+
+					img {
+						height: auto;
+					}
+
+
+					ion-badge {
+						background: var(--primary);
+						--background: var(--transparent);
+						--color: var(--white);
+						--padding-bottom: 0;
+						--padding-end: 0;
+						--padding-start: 0;
+						--padding-top: 0;
+						border-radius: 3px;
+						width: 34px;
+						height: 17px;
+						font-size: 0.7rem !important;
+						font-weight: 500;
+						line-height: 16px;
+						position: absolute;
+						top: 11px;
+						right: 11px;
+					}
+
+					.details {
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 100%;
+						z-index: 99;
+						padding: 20px 15px 11px 15px;
+						height: fit-content;
+						overflow: hidden;
+
+						h2 {
+							margin: 0;
+							padding: 0;
+							color: var(--white);
+							font-weight: 400;
+							font-size: .95rem;
+							margin-bottom: 2px;
+							position: relative;
+							z-index: 99;
+						}
+
+						p {
+							margin: 0;
+							color: var(--white);
+							font-size: .75rem;
+							font-weight: 300;
+							text-overflow: ellipsis;
+							overflow: hidden;
+							white-space: nowrap;
+							max-width: calc(100% - 36px);
+
+						}
+
+						&::before {
+							content: '';
+							position: absolute;
+							bottom: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.76) 99%, rgba(0, 0, 0, 0.76) 100%);
+							z-index: -1;
+						}
+					}
+				}
+
+				ion-row {
+					padding: 7px 12px 8px 12px;
+
+					ion-col {
+						h3 {
+							margin: 0;
+							font-size: 0.8rem;
+							font-weight: 400;
+							color: var(--text-light);
+							margin-bottom: 4px;
+						}
+
+						h4 {
+							margin: 0;
+							font-size: .8rem;
+							font-weight: 400;
+						}
+					}
+				}
+			}
+		}
+	}
+}

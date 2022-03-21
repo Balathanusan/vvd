@@ -1,0 +1,128 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button icon="ios-arrow-back"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'your_cart' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color" style="background-color: white;">
+ <div  *ngIf="isCartLoaded" style="margin-top: 50px;">
+	<div class="img_box ion-text-center">
+		<img src="assets/images/cartimage.png">
+	</div>
+	<h2 class="ion-text-center">{{'hey' | translate}}, {{getUsername}}</h2>
+	<p class="ion-text-center">
+		Your Cart is Empty,Continue to	
+	</p>
+	<div class="btn_container">
+		<div class="botton_box">
+			<ion-button size="large" shape="round" class="btn" (click)="goToHome()">Search</ion-button>
+		</div>
+	
+	</div>
+</div> 
+
+	<ion-list lines="none" *ngIf="cartProducts.length">
+		<ion-item  *ngFor="let data of cartProducts;let i = index" >
+			<div class="item_inner d-flex">
+				<div class="img_box center_img">
+					<img [src]="data?.image" class="crop_img">
+				</div>
+				<div class="text_box">
+					<h3 class="d-flex">
+						<span class="item_name">{{data.title}}</span>
+						<span class="end ion-text-end"> ₹ {{data.price}}</span>
+					</h3>
+					<h4 class="d-flex">
+						<span class="add-remove d-flex">
+							<ion-icon class="zmdi zmdi-minus" (click)="decrement(i,data.id)"></ion-icon>
+							<strong class="ion-text-center">{{data.currentItems}}</strong>
+							<ion-icon class="zmdi zmdi-plus" (click)="increment(i,data.id)"></ion-icon>
+						</span>
+						<small>x&nbsp; ₹ {{data.singleprice}}</small>
+						<!-- <ion-icon class="zmdi zmdi-delete end ion-text-end"></ion-icon> -->
+					</h4>
+
+				</div>
+			</div>
+		</ion-item>
+
+		<!-- <ion-item>
+			<div class="item_inner d-flex">
+				<div class="img_box center_img">
+					<img src="assets/images/food3.png" class="crop_img">
+				</div>
+				<div class="text_box">
+					<h3 class="d-flex">
+						<span class="item_name">Panner Khurchan</span>
+						<span class="end ion-text-end">₹ 80</span>
+					</h3>
+					<h4 class="d-flex">
+						<span class="add-remove d-flex">
+							<ion-icon class="zmdi zmdi-minus"></ion-icon>
+							<strong class="ion-text-center">2</strong>
+							<ion-icon class="zmdi zmdi-plus"></ion-icon>
+						</span>
+						<small>x&nbsp; ₹ 40</small>
+						<ion-icon class="zmdi zmdi-delete end ion-text-end"></ion-icon>
+					</h4>
+
+				</div>
+			</div>
+		</ion-item> -->
+	</ion-list>
+</ion-content>
+
+<ion-footer no-border *ngIf="cartProducts.length">
+	<!-- <ion-footer no-border > -->
+
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-icon slot="start" class="zmdi zmdi-money ion-text-start"></ion-icon>
+				<ion-input type="text" name="advancedAmount"  min="0" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="advancedAmount" placeholder="{{'enteramount' | translate}}"></ion-input>
+			</ion-item>
+		</ion-list>
+	</div>
+
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-icon slot="start" class="zmdi zmdi-assignment ion-text-start"></ion-icon>
+				<ion-input type="text" placeholder="{{'add_instuctions' | translate}}"></ion-input>
+			</ion-item>
+		</ion-list>
+	</div>
+
+	<ion-card>
+		<h2 *ngIf="!isCouponAdded" class="ion-text-center" (click)="coupon_code()">{{'have_coupon_code' | translate}}</h2>
+		<h4 *ngIf="isCouponAdded">{{couponData.coupon}}<span class="ion-float-end"><ion-icon name="close" (click)="removeCoupon()"></ion-icon></span></h4>
+			<div class="payment_details">
+			<h3 class="d-flex">{{'sub_total' | translate}}<span class="end">  ₹ {{getfinalprice}}</span></h3>
+			<h4 class="d-flex">{{'tax' | translate}}<span class="end">₹ {{totalTaxAmount}}</span></h4>
+			<h4 class="d-flex">{{'delivery_charge' | translate}}<span class="end">₹ 0.00</span></h4>
+			<h4 class="d-flex">{{'Discount' | translate}}<span class="end">₹ {{discountAmount}}</span></h4>
+		</div>
+	</ion-card>
+	<div class="amount_payable" (click)="shipping()">
+		<ion-row>
+			<ion-col size="6" class="d-flex">
+				<div class="cart_icon">
+					<ion-icon class="zmdi zmdi-shopping-cart ion-text-start"></ion-icon>
+					<ion-badge>{{getcountfromdb}}</ion-badge>
+				</div>
+				<h2 class="ion-text-end" style="color: white;">{{'checkout_now' | translate}}</h2>
+			</ion-col>
+
+			<ion-col size="6">
+				<h3 class="ion-text-end">
+					{{'pay' | translate}}
+					<strong> ₹{{ grantTotalValue}} </strong>
+					<ion-icon class="zmdi zmdi-chevron-right ion-text-end"></ion-icon>
+				</h3>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-footer>

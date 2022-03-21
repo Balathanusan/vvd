@@ -1,0 +1,25 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>{{'order_confirmed' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="img_box ion-text-center">
+		<img src="assets/images/order_confirmed.png">
+	</div>
+	<h2 class="ion-text-center">{{'hey' | translate}}, Sam Smith</h2>
+	<p class="ion-text-center">
+		{{'your_order_with' | translate}} Global China Restaurant is <br>
+		{{'confirmed_and_will_delivered_at_your_place' | translate}}<br>
+		{{'as_soon_as_possible' | translate}}
+	</p>
+	<div class="btn_container">
+		<div class="botton_box">
+			<ion-button size="large" shape="round" class="btn" (click)="goToHome()">{{'continue_ordering' | translate}}</ion-button>
+		</div>
+		<div class="botton_box my_orders">
+			<ion-button size="large" shape="round" class="btn" (click)="goToMy_orders()">{{'my_orders' | translate}}</ion-button>
+		</div>
+	</div>
+</ion-content>

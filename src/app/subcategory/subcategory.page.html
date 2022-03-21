@@ -1,0 +1,49 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+    SubCategory
+    <span class="ion-float-end cart_icon" (click)="cart()">
+      <ion-icon class="zmdi zmdi-shopping-cart ion-text-start"></ion-icon>
+      <ion-badge>{{getcountfromdb}}</ion-badge>
+    </span>
+		</ion-title>
+  </ion-toolbar>
+  <div class="search_box d-flex">
+		<ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+		<ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder=""></ion-searchbar>
+		<!-- <ion-icon class="zmdi zmdi-tune ion-text-end" ></ion-icon> -->
+	</div>
+  </ion-header>
+
+<ion-content  >
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="like_to_order">
+    <h2>SubCategory </h2>
+    </div>
+
+  <ion-grid fixed>
+
+<ion-row >
+   <ion-col size="4" text-center *ngFor="let data of subcategory;" (click)="gosearch(data.id)">
+  
+        <div>
+        <img [src]="data.icons" class="crop_img">
+      </div>
+
+      <div>
+        <small>{{ data.title }}</small>
+      </div>
+  </ion-col> 
+  
+</ion-row>
+ 
+
+</ion-grid>
+
+</ion-content>

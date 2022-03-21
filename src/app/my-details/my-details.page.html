@@ -1,0 +1,64 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> {{'my_details' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+	<ion-card>
+		<h2>{{'personal_details' | translate}}</h2>
+		<div class="form">
+			<ion-list lines="none">
+				<ion-item lines="none">
+					<ion-label position="floating">User Name</ion-label>
+					<ion-input readonly type="name" [value]="fullName"></ion-input>
+				</ion-item>
+
+				<ion-item lines="none">
+					<ion-label position="floating">Mobile Number</ion-label>
+					<ion-input readonly type="mobile" [value]="mobile"></ion-input>
+				</ion-item>
+
+				<!-- <ion-item lines="none">
+					<ion-label position="floating">{{'phone_number' | translate}}</ion-label>
+					<ion-input disabled="true" type="text" value="+91 987 654 3210"></ion-input>
+				</ion-item> -->
+			</ion-list>
+		</div>
+	</ion-card>
+
+	<ion-card class="your_saved_address">
+		<h2>{{'your_saved_address' | translate}}:</h2>
+		<ion-list lines="none">
+			<ion-item *ngFor="let address of addedAddressList">
+				<div class="item_inner d-flex">
+					<div class="address">
+						<h3 class="address_title">{{address.title}}</h3>
+						<p style="white-space: normal;">{{address.formattedAddress}}</p>
+					</div>
+					<ion-icon class="zmdi zmdi-delete end ion-text-end" (click)="deleteaddress(address.id)"></ion-icon>
+				</div>
+			</ion-item>
+
+			<!-- <ion-item (click)="add_address()">
+				<div class="item_inner d-flex">
+					<div class="address">
+						<h3 class="address_title">Office</h3>
+						<p>222, world trade building, near Central park,<br>Wadhington DC, USA.</p>
+					</div>
+						<ion-icon class="end ion-text-end zmdi zmdi-edit"></ion-icon>
+				</div>
+			</ion-item> -->
+		</ion-list>
+	</ion-card>
+</ion-content>
+
+<ion-footer no-border>
+	<ion-button size="large" class="btn" (click)="add_address()">
+		<ion-icon class="ion-text-start zmdi zmdi-plus-circle-o"></ion-icon>
+		{{'add_new_address' | translate}}
+	</ion-button>
+</ion-footer>

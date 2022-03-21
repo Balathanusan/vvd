@@ -1,0 +1,56 @@
+.img-box {
+	margin-top: 15px;
+	margin-bottom: 15px;
+
+	img {
+		width: 255px;
+		margin-top: 17px;
+		margin-bottom: 20px;
+	}
+}
+
+h2 {
+	margin: 0;
+	color: var(--text-dark);
+	font-size: 1.1rem;
+	margin-bottom: 30px;
+}
+
+.rating_icon {
+	margin-bottom: 20px;
+
+	ion-icon {
+		color: var(--text-light);
+		opacity: .5;
+		font-size: 2.9rem;
+		margin: 0 1px;
+
+		&.active {
+			color: var(--secondary);
+			opacity: 1;
+		}
+	}
+}
+
+.form {
+	width: calc(100% - 55px);
+
+	ion-list {
+		ion-item {
+			background: #EBEBEB !important;
+			border-bottom: 0 !important;
+			border-radius: 9px;
+			padding: 21px 16px;
+			margin-bottom: 30px;
+
+			ion-textarea {
+				--placeholder-font-weight: 400 !important;
+			}
+		}
+	}
+
+	.button.btn.button-round {
+		height: 50px;
+		font-size: 1.1rem;
+	}
+}

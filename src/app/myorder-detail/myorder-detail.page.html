@@ -1,0 +1,105 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title> {{'my_orders' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+	<ion-list lines="none">
+		<ion-item [ngClass]="faqExpand1 ? 'active' : '' ">
+			<div class="item_inner">
+				<div class="item_header d-flex" >
+					<h2 *ngIf="order.month" class="ion-text-end"><strong>{{order.date}}</strong>{{order.month}}</h2>
+					<div class="item_detail">
+						<h3 class="d-flex" >
+							<span class="order_code">order :{{order.orderCode}}</span>
+							<span class="item_price end ion-text-end">₹ {{order.amount}}</span>
+						</h3>
+						<p class="d-flex">
+							<span class="order_code"> {{order.time | date: 'h:mm a'}}</span>
+							<span class="end order_status preparing ion-text-end">{{order.orderStatus | translate}}</span>
+						</p>
+					</div>
+				</div>
+				<div class="order_details">
+					<div class="order_steps d-flex" >
+						<div class="order_step ion-text-center" [ngClass]="(orderStatus === 1 || orderStatus === 2 || orderStatus === 3
+						 || orderStatus === 4 || orderStatus === 5) ? 'active' : ''">
+							<p>{{'placed' | translate}}</p>
+							<ion-icon class="zmdi zmdi-check-all"></ion-icon>
+						</div>
+						<div class="order_step ion-text-center" [ngClass]="(orderStatus === 2 || orderStatus === 3 || 
+						orderStatus === 4 || orderStatus === 5) ? 'active' : ''">
+							<p>{{'In progress' | translate}}</p>
+							<ion-icon class="zmdi zmdi-dropbox"></ion-icon>
+						</div>
+						<!-- <div class="order_step ion-text-center" [ngClass]="orderStatus === (orderStatus === 3 || 
+						orderStatus === 4 || orderStatus === 5) ? 'active' : ''">
+							<p>{{'dispatched' | translate}}</p>
+							<ion-icon class="zmdi zmdi-bike"></ion-icon>
+						</div>
+						<div class="order_step ion-text-center" [ngClass]="orderStatus === (orderStatus === 4 || 
+						orderStatus === 5) ? 'active' : ''">
+							<p>{{'track' | translate}}</p>
+							<ion-icon class="zmdi zmdi-truck"></ion-icon>
+						</div> -->
+						<div class="order_step ion-text-center " [ngClass]="orderStatus === 3 ? 'active' : ''">
+							<p>{{'delivered' | translate}}</p>
+							<ion-icon class="zmdi zmdi-home"></ion-icon>
+						</div>
+					</div>
+					<div class="order_items">
+						<div class="item" *ngFor="let item of orderedProducts">
+							<h3 class="d-flex">
+								<span class="item_name">{{item.title}}</span>
+								<span class="end item_price ion-text-end">₹ {{item.amount}}</span>
+							</h3>
+							<p> {{item.qty}} x ₹ {{item.perPrice}} </p> <p style="color: #0066cb;">({{item.saleType}})</p>
+						</div>
+						<div class="total">
+							<h4 class="d-flex">
+								<span class="ion-text-end">{{'sub_total' | translate}}</span>
+								<strong class="ion-text-end end">₹ {{totalAmount}}</strong>
+							</h4>
+							<h4 class="d-flex">
+								<span class="ion-text-end">{{'tax' | translate}}</span>
+								<strong class="ion-text-end end">₹ {{totalTax}}</strong>
+							</h4>
+							<h4 class="d-flex">
+								<span class="ion-text-end">{{'delivery_charge' | translate}}</span>
+								<strong class="ion-text-end end">₹ 0</strong>
+							</h4>
+							<!-- <h4 class="d-flex">
+								<span *ngIf="discountAmout !== 0" class="ion-text-start coupon">{{couponCode}}</span>
+								<span class="ion-text-end">{{'Discount' | translate}}</span>
+								<strong class="ion-text-end end">₹ {{discountAmout}}</strong>
+							</h4> -->
+						</div>
+						<div class="grand_total">
+							<h2 class="d-flex">
+								<!-- <span class="payment_option">{{OrderFullDetail.paymentType}}</span> -->
+								<span class="payment_option">Cash on Delivery</span>
+								<span class="end ion-text-end">₹ {{grandTotal}}</span>
+							</h2>
+						</div>
+						<div class="total">
+						<h4>
+							<span style="margin-top: 7px;">Notes:</span>
+							<span style="margin-top: 7px;">1. Our sales person will reach you soon regarding the payment</span>
+							<span style="margin-top: 7px;">2. If you have any questions please reach out this number <a style="color: #0066cb !important;    text-decoration: none;" ion-item href="tel:+9789503186"></a>
+							</span>
+						</h4>	
+						</div>
+						<div class="botton_container" *ngIf="orderStatus === 3">
+							<ion-button size="large" shape="round" class="btn"  type="submit" (click)="submitFlag()">Submit & Close Order</ion-button>			
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</ion-item>
+	</ion-list>
+</ion-content>

@@ -1,0 +1,175 @@
+.order-steps {
+	//padding-top: 10px;
+	background: var(--primary);
+	overflow: hidden;
+	padding-bottom: 10px;
+
+	ion-col {
+		height: 50px;
+		line-height: 50px;
+		position: relative;
+		padding: 0 0;
+		margin: 0 5px;
+		width: calc(33.33% - 5px);
+		max-width: calc(33.33% - 5px);
+		margin: 0 auto;
+
+		ion-icon {
+			font-size: 1.45rem;
+			color: var(--white);
+			width: 35px;
+			margin: 0 auto;
+			position: relative;
+			z-index: 99;
+			background: var(--primary);
+			min-height: unset;
+			top: 7px;
+
+			&::before {
+				opacity: 0.5;
+			}
+		}
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 3px;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			width: 50%;
+			height: 3px;
+			z-index: 1;
+			background: url(../../assets/images/dot.png);
+			background-repeat: no-repeat;
+			background-repeat: repeat-x;
+			background-size: 10px;
+			opacity: 0.5;
+		}
+
+		&::after {
+			right: 0;
+			left: unset;
+		}
+
+		&:first-child {
+			&::before {
+				display: none;
+			}
+		}
+
+		&:last-child {
+			&::after {
+				display: none;
+			}
+		}
+
+		&.done {
+			ion-icon {
+				&::before {
+					opacity: 1;
+				}
+			}
+
+			&::after,
+			&::before {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+ion-card {
+	width: 100%;
+	margin: 0;
+	background: var(--white);
+	margin-top: 10px;
+	border-radius: 0;
+	padding: 17px 20px 53px 20px;
+	box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.1);
+
+	h2 {
+		margin: 0;
+		color: var(--text-dark2);
+		font-size: .95rem;
+		padding-bottom: 20px;
+	}
+
+	&:first-child {
+		margin-top: 23px;
+	}
+
+	ion-list {
+		padding: 0;
+
+		&.radio_group {
+			ion-item {
+				padding: 0;
+				padding-bottom: 30px;
+				min-height: unset !important;
+				--inner-min-height: unset !important;
+				--min-height: unset !important;
+				--inner-padding-end: 0px;
+				--padding-start: 0;
+
+				ion-radio {
+					margin: 0;
+					margin-right: 18px;
+					--color-checked: var(--secondary) !important;
+					--border-width: 1.5px !important;
+				}
+
+				ion-label {
+					margin: 0;
+					color: var(--secondary);
+					font-weight: 500;
+					font-size: .95rem;
+				}
+
+				&.credit_card {
+					padding-bottom: 0px !important;
+				}
+			}
+		}
+	}
+
+	.form {
+		width: 100%;
+		padding-left: 39px;
+		padding-right: 18px;
+
+		ion-list {
+			ion-item {
+				padding-bottom: 5px !important;
+
+				ion-label.label-floating {
+					font-size: 0.95rem;
+					color: var(--text-dark2) !important;
+				}
+
+				ion-input {
+					font-size: 1rem !important;
+					font-weight: 500 !important;
+				}
+			}
+
+			ion-row {
+				align-items: flex-end !important;
+
+				.card_type {
+					.card_img {
+						width: 55px;
+					}
+
+					ion-icon {
+						color: var(--secondary);
+						font-size: 1.5rem;
+						min-width: 20px;
+					}
+				}
+			}
+		}
+	}
+
+}

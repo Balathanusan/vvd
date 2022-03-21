@@ -1,0 +1,53 @@
+ion-header ion-toolbar ion-title {
+	padding: 0 20px !important;
+}
+
+.img_box {
+	margin-bottom: 21px;
+	margin-top: 10px;
+
+	img {
+		width: 275px;
+	}
+}
+
+h2 {
+	margin: 0;
+	color: #4a4a4a;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+p {
+	margin: 0;
+	color: #4a4a4a;
+	font-size: .8rem;
+	font-weight: 400;
+	padding-bottom: 30px;
+}
+
+.btn_container {
+	margin: 0 auto;
+	width: calc(100% - 28%);
+
+	.botton_box {
+		border-radius: 50px;
+		box-shadow: 0 -10px 19px -10px var(--secondary);
+		margin-top: 18px;
+
+		.button.btn.button-round {
+			font-size: 1rem;
+			height: 45px;
+
+		}
+
+		&.my_orders {
+			.button.btn.button-round {
+				--background: var(--white);
+				color: var(--secondary);
+				font-weight: 500;
+			}
+		}
+	}
+}

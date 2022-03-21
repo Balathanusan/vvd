@@ -1,0 +1,31 @@
+ion-content {
+	--background: rgba(0, 0, 0, 0) !important;
+}
+
+ion-footer {
+	background: var(--white);
+	padding: 15px 18px 16px 18px;
+
+	.form {
+		width: calc(100% - 34px);
+
+		ion-list {
+			padding: 0;
+
+			ion-item {
+				padding-bottom: 5px !important;
+				margin-bottom: 40px;
+				ion-label{
+					font-size: 0.9rem;
+					color: var(--text-dark2)!important;
+				}
+				ion-input {
+					font-size: 1rem !important;
+				}
+			}
+			.button.btn{
+				font-size: 1.1rem!important;
+			}
+		}
+	}
+}

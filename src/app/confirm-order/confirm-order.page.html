@@ -1,0 +1,88 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<!-- <ion-back-button icon="ios-arrow-back"></ion-back-button> -->
+		</ion-buttons>
+		<ion-title>Order Placed</ion-title>
+	</ion-toolbar>
+	<ion-row class="order-steps">
+		<ion-col col-4 text-center class="done">
+			<ion-icon class="zmdi zmdi-mall"></ion-icon>
+		</ion-col>
+		<ion-col col-4 text-center class="done">
+			<ion-icon class="zmdi zmdi-card"></ion-icon>
+		</ion-col>
+		<ion-col col-4 text-center class="done">
+			<ion-icon class="zmdi zmdi-assignment-check"></ion-icon>
+		</ion-col>
+	</ion-row>
+</ion-header>
+
+<ion-content class="bg_color">
+	<ion-card>
+		<div class="container">
+			<h1>{{orderdetail.message}}
+			</h1>
+				
+			<div class="order_details">
+				<h2>{{"order_details" | translate}}</h2>
+				<div class="order_items" >
+					<div class="item" *ngFor="let data of orderdetailproducts;let i = index">
+						<h3 class="d-flex">
+							<span class="item_name">{{data.title}}</span>
+							<span class="end item_price ion-text-end"> ₹ {{data.amount}}</span>
+						</h3>
+						<p>{{data.qty}} x ₹ {{data.perPrice}}</p> <p style="color: #0066cb;">({{data.saleType}})</p>
+					</div>
+				
+
+					<div class="total">
+						<!-- <h4 class="d-flex">
+							<span class="ion-text-end">{{'sub_total' | translate}}</span>
+							<strong class="ion-text-end end"> ₹{{totalamount}} </strong>
+						</h4> -->
+						<h4 class="d-flex">
+							<span class="ion-text-end">{{'tax' | translate}}</span>
+							<strong class="ion-text-end end">₹{{totalTax}}</strong>
+						</h4>
+						<h4 class="d-flex">
+							<span class="ion-text-end">{{'delivery_charge' | translate}}</span>
+							<strong class="ion-text-end end">₹0</strong>
+						</h4>
+						<!-- <h4 class="d-flex">
+							<span class="ion-text-end">{{'Discount' | translate}}</span>
+							<strong class="ion-text-end end">₹{{couponDiscount}}</strong>
+						</h4> -->
+					</div>
+					<div class="grand_total">
+						<h2 class="d-flex">
+							<span class="payment_option">Total </span>
+							<span class="end ion-text-end">₹ {{grantTotal}}</span>
+						</h2>
+					</div>
+					<div class="grand_total">
+						<h2 class="d-flex">
+							<span class="payment_option">Payment Type </span>
+							<!-- <span class="end ion-text-end">{{ordertype}}</span> -->
+							<span class="end item_price ion-text-end">Cash on delivery</span>
+						</h2>
+					</div>
+					<div class="total">
+						<h4>
+							<span style="margin-top: 7px;">Notes:</span>
+							<span style="margin-top: 7px;">1. Our sales person will reach you soon regarding the payment</span>
+							<span style="margin-top: 7px;">2. If you have any questions please reach out this number <a style="color: #0066cb !important;    text-decoration: none;" ion-item href="tel:+9789503186"></a>
+							</span>
+						</h4>	
+						</div>
+				</div>
+			</div>
+		</div>
+	</ion-card> 
+</ion-content>
+<ion-footer no-border>
+	<ion-button size="large" class="btn" (click)="checkout()">
+		Back to Home
+		<ion-icon class="ion-text-end zmdi zmdi-chevron-right"></ion-icon>
+	</ion-button>
+</ion-footer>

@@ -1,0 +1,648 @@
+<ion-header class="bg_transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button icon="ios-arrow-back"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			<div class="icon_box d-flex ion-float-end">
+				<span [ngClass]="favorite_icon ? 'favorite_icon active' : 'favorite_icon'" (click)="toggleSaveIcon1()">
+					<ion-icon class="zmdi zmdi-favorite-outline "></ion-icon>
+					<ion-icon class="zmdi zmdi-favorite "></ion-icon>
+				</span>
+				<span class="cart_icon end" (click)="cart()">
+					<ion-icon class="zmdi zmdi-shopping-cart ion-text-start"></ion-icon>
+					<ion-badge>1</ion-badge>
+				</span>
+			</div>
+		</ion-title>
+	</ion-toolbar>
+	<div class="banner">
+		<div class="banner_img center_img">
+			<img src="assets/images/r1.jpg" class="crop_img">
+		</div>
+		<div class="banner_details ion-text-center">
+			<h2>China Gate Restaurant</h2>
+			<p>Arebic Healthy Food</p>
+			<div class="rating_icon">
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</div>
+		</div>
+	</div>
+	<div class="restaurant_about">
+		<ion-row>
+			<ion-col size="5">
+				<h3>{{'avg_dlvr_time' | translate}}</h3>
+				<h4>30-45 min</h4>
+			</ion-col>
+			<ion-col size="3">
+				<h3>{{'min_order' | translate}}</h3>
+				<h4>$ 50</h4>
+			</ion-col>
+			<ion-col size="4">
+				<h3>{{'dlvr_fee' | translate}}</h3>
+				<h4>$ 5.00</h4>
+			</ion-col>
+		</ion-row>
+	</div>
+
+	<ion-segment [(ngModel)]="tab" lines="none">
+		<ion-segment-button value="cuisine">
+			<ion-label>
+				{{'cuisine' | translate}}
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="review">
+			<ion-label>
+				{{'review' | translate}}
+			</ion-label>
+		</ion-segment-button>
+		<ion-segment-button value="info">
+			<ion-label>
+				{{'info' | translate}}
+			</ion-label>
+		</ion-segment-button>
+	</ion-segment>
+</ion-header>
+
+<ion-content class="bg_color" [ngSwitch]="tab">
+
+	<!-- Cuisine  Start -->
+	<div class="tab_container" *ngSwitchCase="'cuisine'">
+		<div class="collapse" [ngClass]="faqExpand1 ? 'active' : '' " (click)="faqExpandToggle1()">
+			<h2 class="d-flex">
+				<span class="list_name">Popular Items</span>
+				<ion-icon class="end zmdi zmdi-chevron-down"></ion-icon>
+			</h2>
+			<ion-list lines="none">
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food2.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Dal Makhni</span>
+								<span class="end ion-text-end">$ 30</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()">Black Dal, slow cooked overnight with ghee and fresh cream.</span>
+
+								<span class="end" [ngClass]="Add_icon1 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon1()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food3.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Panner Khurchan</span>
+								<span class="end ion-text-end">$ 40</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> A rich tomato, butter and cream based gravy, lightly spiced.</span>
+
+								<span class="end" [ngClass]="Add_icon2 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon2()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food4.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Tahi Red Curry</span>
+								<span class="end ion-text-end">$ 45</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> Thai red curry with assorted vage-table and tofu with butter top ups.</span>
+
+								<span class="end" [ngClass]="Add_icon3 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon3()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
+
+		<div class="collapse" [ngClass]="faqExpand2 ? 'active' : '' " (click)="faqExpandToggle2()">
+			<h2 class="d-flex">
+				<span class="list_name">Main Course</span>
+				<ion-icon class="end zmdi zmdi-chevron-down"></ion-icon>
+			</h2>
+			<ion-list lines="none">
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food2.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Dal Makhni</span>
+								<span class="end ion-text-end">$ 30</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()">Black Dal, slow cooked overnight with ghee and fresh cream.</span>
+
+								<span class="end" [ngClass]="Add_icon4 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon4()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food3.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Panner Khurchan</span>
+								<span class="end ion-text-end">$ 40</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> A rich tomato, butter and cream based gravy, lightly spiced.</span>
+
+								<span class="end" [ngClass]="Add_icon5 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon5()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food4.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Tahi Red Curry</span>
+								<span class="end ion-text-end">$ 45</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> Thai red curry with assorted vage-table and tofu with butter top ups.</span>
+
+								<span class="end" [ngClass]="Add_icon6 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon6()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
+
+		<div class="collapse" [ngClass]="faqExpand3 ? 'active' : '' " (click)="faqExpandToggle3()">
+			<h2 class="d-flex">
+				<span class="list_name">Lunch</span>
+				<ion-icon class="end zmdi zmdi-chevron-down"></ion-icon>
+			</h2>
+			<ion-list lines="none">
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food2.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Dal Makhni</span>
+								<span class="end ion-text-end">$ 30</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()">Black Dal, slow cooked overnight with ghee and fresh cream.</span>
+
+								<span class="end" [ngClass]="Add_icon7 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon7()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food3.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Panner Khurchan</span>
+								<span class="end ion-text-end">$ 40</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> A rich tomato, butter and cream based gravy, lightly spiced.</span>
+
+								<span class="end" [ngClass]="Add_icon8 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon8()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food4.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Tahi Red Curry</span>
+								<span class="end ion-text-end">$ 45</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> Thai red curry with assorted vage-table and tofu with butter top ups.</span>
+
+								<span class="end" [ngClass]="Add_icon9 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon9()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
+
+		<div class="collapse" [ngClass]="faqExpand4 ? 'active' : '' " (click)="faqExpandToggle4()">
+			<h2 class="d-flex">
+				<span class="list_name">Breakfast</span>
+				<ion-icon class="end zmdi zmdi-chevron-down"></ion-icon>
+			</h2>
+			<ion-list lines="none">
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food2.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Dal Makhni</span>
+								<span class="end ion-text-end">$ 30</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()">Black Dal, slow cooked overnight with ghee and fresh cream.</span>
+
+								<span class="end" [ngClass]="Add_icon10 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon10()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food3.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Panner Khurchan</span>
+								<span class="end ion-text-end">$ 40</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> A rich tomato, butter and cream based gravy, lightly spiced.</span>
+
+								<span class="end" [ngClass]="Add_icon11 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon11()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food4.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Tahi Red Curry</span>
+								<span class="end ion-text-end">$ 45</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> Thai red curry with assorted vage-table and tofu with butter top ups.</span>
+
+								<span class="end" [ngClass]="Add_icon12 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon12()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
+		<div class="collapse" [ngClass]="faqExpand5 ? 'active' : '' " (click)="faqExpandToggle5()">
+			<h2 class="d-flex">
+				<span class="list_name">Dinner</span>
+				<ion-icon class="end zmdi zmdi-chevron-down"></ion-icon>
+			</h2>
+			<ion-list lines="none">
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food2.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Dal Makhni</span>
+								<span class="end ion-text-end">$ 30</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()">Black Dal, slow cooked overnight with ghee and fresh cream.</span>
+
+								<span class="end" [ngClass]="Add_icon13 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon13()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food3.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Panner Khurchan</span>
+								<span class="end ion-text-end">$ 40</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> A rich tomato, butter and cream based gravy, lightly spiced.</span>
+
+								<span class="end" [ngClass]="Add_icon14 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon14()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food4.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Tahi Red Curry</span>
+								<span class="end ion-text-end">$ 45</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> Thai red curry with assorted vage-table and tofu with butter top ups.</span>
+
+								<span class="end" [ngClass]="Add_icon15 ? 'icon_box active' : 'icon_box'" (click)="toggleAddIcon15()">
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+									<ion-icon class="zmdi zmdi-check"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
+	</div>
+	<!-- Cuisine  End -->
+
+
+	<!-- Review   Start  -->
+
+	<div class="tab_container review" *ngSwitchCase="'review'">
+		<ion-list lines="none">
+			<ion-item>
+				<div class="item_inner">
+					<h2>George Timber</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">5 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+					</p>
+				</div>
+			</ion-item>
+
+			<ion-item>
+				<div class="item_inner">
+					<h2>Emili Johnson</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">3 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+					</p>
+				</div>
+			</ion-item>
+			<ion-item>
+				<div class="item_inner">
+					<h2>George Timber</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">5 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+					</p>
+				</div>
+			</ion-item>
+
+			<ion-item>
+				<div class="item_inner">
+					<h2>Emili Johnson</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">3 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+					</p>
+				</div>
+			</ion-item>
+			<ion-item>
+				<div class="item_inner">
+					<h2>George Timber</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">5 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+					</p>
+				</div>
+			</ion-item>
+
+			<ion-item>
+				<div class="item_inner">
+					<h2>Emili Johnson</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">3 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+					</p>
+				</div>
+			</ion-item>
+			<ion-item>
+				<div class="item_inner">
+					<h2>George Timber</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">5 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+					</p>
+				</div>
+			</ion-item>
+
+			<ion-item>
+				<div class="item_inner">
+					<h2>Emili Johnson</h2>
+					<h3 class="d-flex">
+						<ion-badge>4.2</ion-badge>
+						<span class="rating_icon">
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star active"></ion-icon>
+							<ion-icon class="zmdi zmdi-star"></ion-icon>
+						</span>
+						<span class="end ion-text-end">3 April, 17</span>
+					</h3>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+					</p>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>
+	<!-- Review End  -->
+
+
+	<!-- Info   Start  -->
+	<div class="tab_container info" *ngSwitchCase="'info'">
+		<ion-list lines="none">
+			<ion-item>
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>{{'area' | translate}}</span>
+						<strong class="end">London</strong>
+					</h3>
+				</div>
+			</ion-item>
+			<ion-item class="status_open">
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>{{'status' | translate}}</span>
+						<strong class="end">Open</strong>
+					</h3>
+				</div>
+			</ion-item>
+			<ion-item>
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>{{'delivery_time' | translate}}</span>
+						<strong class="end">30-45 min</strong>
+					</h3>
+				</div>
+			</ion-item>
+			<ion-item>
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>{{'min_order' | translate}}</span>
+						<strong class="end">$ 300</strong>
+					</h3>
+				</div>
+			</ion-item>
+			<ion-item>
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>{{'delivery' | translate}}</span>
+						<strong class="end">$ 5.00</strong>
+					</h3>
+				</div>
+			</ion-item> 
+		</ion-list>
+	</div>
+	<!-- Info   End  -->
+</ion-content>

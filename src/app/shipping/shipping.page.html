@@ -1,0 +1,98 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button icon="ios-arrow-back"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'shipping_detail' | translate}}</ion-title>
+	</ion-toolbar>
+	<ion-row class="order-steps">
+		<ion-col col-4 text-center class="done">
+			<ion-icon class="zmdi zmdi-mall"></ion-icon>
+		</ion-col>
+		<ion-col col-4 text-center class="">
+			<ion-icon class="zmdi zmdi-card"></ion-icon>
+		</ion-col>
+		<ion-col col-4 text-center class="">
+			<ion-icon class="zmdi zmdi-assignment-check"></ion-icon>
+		</ion-col>
+	</ion-row>
+</ion-header>
+
+<ion-content class="bg_color">
+	<!-- <ion-card>
+		<h2>{{'when_you_want_delivery' | translate}}?</h2>
+		<ion-list lines="none">
+			<ion-radio-group>
+				<div class="item_box">
+					<ion-item>
+						<ion-label>
+							{{'now' | translate}}
+						</ion-label>
+						<ion-radio slot="start" value="now" checked></ion-radio>
+					</ion-item>
+					<p>{{'asap_description' | translate}}</p>
+				</div>
+				<ion-item>
+					<ion-label> {{'later' | translate}} </ion-label>
+					<ion-radio slot="start" value="later"></ion-radio>
+				</ion-item>
+				<ion-item>
+					<ion-datetime slot="start" displayFormat="DD MMM, YYYY H:mm" value="" placeholder="{{'select_date_time_of_delivery' | translate}}"></ion-datetime>
+					<ion-icon slot="end" class="zmdi zmdi-calendar-alt ion-text-end"></ion-icon>
+				</ion-item>
+			</ion-radio-group>
+		</ion-list>
+	</ion-card> -->
+
+	<ion-card class="where_to_deliver">
+		<h2>{{'where_to_deliver' | translate}}?</h2>
+		<!-- <ion-list radio-group>
+			<ion-item *ngFor="let data of getResdata; let i = index" >
+				<ion-label>
+					{{data.title}}
+					<small>
+						{{data.blockNo}}
+					</small>
+					<small>
+						{{data.address}}
+					</small>
+				</ion-label>
+				<ion-radio item-start  value="{{data.title}}" (click)="getaddress(data.title,data.blockNo)" ></ion-radio>
+
+				
+			</ion-item>
+		  </ion-list> -->
+		<ion-list lines="none" radio-group >
+			<ion-radio-group >
+				<ion-item   *ngFor="let data of getResdata; let i = index" (click)="getaddress(data.title,data.blockNo,data.id)"  >
+					<ion-label style="margin-left: 35px;">
+						{{data.title}}
+						<small>
+							{{data.blockNo}}
+						</small>
+						<small>
+							{{data.address}}
+						</small>
+					</ion-label>
+					<ion-icon class="zmdi zmdi-delete end ion-text-end iconColor" (click)="deleteaddress(data.id)"></ion-icon>
+					<ion-radio style="position: absolute; top:3px;" slot="start"  value="{{data.id}}"  [checked]="(radioByDefault && i === 0) || this.data.id===''"></ion-radio>
+				</ion-item>
+
+				
+			</ion-radio-group>
+		
+		</ion-list>
+
+		<h5 class="d-flex" (click)="add_address()">
+			<ion-icon class="ion-text-start zmdi zmdi-plus-circle-o"></ion-icon>
+			<span>{{'add_new_address' | translate}}</span>
+		</h5>
+	</ion-card>
+</ion-content>
+
+<ion-footer no-border >
+	<ion-button size="large" class="btn" (click)="payment()" [disabled]="disableButton">
+		{{'proceed_to_payment' | translate}}
+		<ion-icon class="ion-text-end zmdi zmdi-chevron-right"></ion-icon>
+	</ion-button>
+</ion-footer>

@@ -1,0 +1,147 @@
+<ion-header class="bg_transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			<h2 class="ion-float-start">
+				<small>Madurai</small>
+				<strong>{{appname}}</strong>
+			</h2>
+
+			<span class="ion-float-end cart_icon"  (click)="cartt()">
+				<ion-icon class="zmdi zmdi-shopping-cart ion-text-start"></ion-icon>
+				<ion-badge>{{getcountfromdb}}</ion-badge>
+			</span>
+		</ion-title>
+	</ion-toolbar>
+	<div class="search_box d-flex">
+		<ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+		<ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'what_you_like_to_eat_today' | translate}}"></ion-searchbar>
+		<ion-icon class="zmdi zmdi-tune ion-text-end" (click)="filter()"></ion-icon>
+	</div>
+
+	<ion-segment [(ngModel)]="tab" lines="none">
+		<ion-segment-button value="cuisine">
+			<ion-label>
+				Product List
+			</ion-label>
+		</ion-segment-button>
+	</ion-segment>
+</ion-header>
+
+<ion-content class="bg_color" [ngSwitch]="tab" *ngIf="contentLoaded">
+	<div style="margin-top: 50px;" *ngIf="items.length === 0">
+		<div class="img_box ion-text-center">
+			<img class="center" src="../../assets/images/product.png">
+		</div>
+		<h2 class="ion-text-center">{{'hey' | translate}}, {{getUsername}}</h2>
+		<p class="ion-text-center">
+			product list is Empty
+		</p>
+	</div> 
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+	<!-- Cuisine  Start -->
+	<div class="tab_container" *ngSwitchCase="'cuisine'">
+		<div class="collapse" [ngClass]="faqExpand1 ? 'active' : 'active' ">
+			
+			<ion-list lines="none">
+				<ion-item *ngFor="let data of items;let i = index" >
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="callProductDetails(data.id)">
+							<img [src]="data?.icons" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="callProductDetails(data.id)">
+								<span class="item_name">{{data?.title}}</span>
+								<span class="end ion-text-end"> ₹ {{data?.price}}</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="callProductDetails(data.id)">{{data?.description}}</span>
+								<span class="end add-remove d-flex">
+                                    <ion-icon class="zmdi zmdi-minus" (click)="decrement(i,data.id,data.currentItems,data)"></ion-icon>
+                                    <strong class="ion-text-center">
+                                        <ion-input class="ion-text-center" style="height: 23px;width: 33px;" readonly type="number" min="0" [value]="data.currentItems" [(ngModel)]="data.currentItems"></ion-input>
+                                    </strong>
+                                    <ion-icon class="zmdi zmdi-plus"  (click)="increment(i,data.id,data.currentItems,data)"></ion-icon>
+                                </span>
+								
+							</p>
+							<p class="d-flex">
+								<span class="item_name" (click)="callProductDetails(data.id)" *ngIf="data.productschemeStatus==1">Scheme: Product Scheme Available</span>
+							</p>
+
+							<p class="d-flex">
+								<span class="item_name" (click)="callProductDetails(data.id)" *ngIf="data.rewardpointsStatus===1">Reward Points Available</span>
+							</p>
+							<!-- <p class="d-flex">
+								<span class="item_name" (click)="callProductDetails(data.id)" *ngIf="data.productscheme.status==='1'">Scheme: Product Scheme Available</span>
+							</p>
+							<p class="d-flex">
+								<span class="item_about" (click)="callProductDetails(data.id)">Reward Points:</span>
+							</p>   -->
+						</div>
+					</div>
+				</ion-item> 
+			<!--	 <ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food3.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Panner Khurchan</span>
+								<span class="end ion-text-end">$ 40</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> A rich tomato, butter and cream based gravy, lightly spiced.</span>
+								<span class="end add-remove d-flex" (click)="toggleAddIcon1()">
+									<ion-icon class="zmdi zmdi-minus"></ion-icon>
+									<strong class="ion-text-center">1</strong>
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item>
+				<ion-item>
+					<div class="item_inner d-flex">
+						<div class="img_box center_img" (click)="item_detail()">
+							<img src="assets/images/food4.png" class="crop_img">
+						</div>
+						<div class="text_box">
+							<h3 class="d-flex" (click)="item_detail()">
+								<span class="item_name">Tahi Red Curry</span>
+								<span class="end ion-text-end">$ 45</span>
+							</h3>
+							<p class="d-flex">
+								<span class="item_about" (click)="item_detail()"> Thai red curry with assorted vage-table and tofu with butter top ups.</span>
+								<span class="end add-remove d-flex" (click)="toggleAddIcon1()">
+									<ion-icon class="zmdi zmdi-minus"></ion-icon>
+									<strong class="ion-text-center">1</strong>
+									<ion-icon class="zmdi zmdi-plus"></ion-icon>
+								</span>
+							</p>
+						</div>
+					</div>
+				</ion-item> -->
+			</ion-list>
+		</div>
+
+	
+	</div>
+	<!-- Cuisine  End -->
+
+
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	  </ion-infinite-scroll-content>	  </ion-infinite-scroll>
+</ion-content>
+<ion-footer no-border class="d-flex" *ngIf="getcountfromdb != 0">
+		
+	<ion-button size="large" shape="round" class="btn" (click)="cart()">Go to cart</ion-button>
+</ion-footer> 

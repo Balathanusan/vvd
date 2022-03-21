@@ -1,0 +1,33 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button icon="ios-arrow-back"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			{{'rate_and_review' | translate}}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="img-box ion-text-center">
+		<img src="assets/images/reting-logo.png">
+	</div>
+	<h2 class="ion-text-center">{{'rate_and_review' | translate}}<br>Global China Restaurant</h2>
+	<div class="rating_icon ion-text-center">
+		<ion-icon class="zmdi zmdi-star active"></ion-icon>
+		<ion-icon class="zmdi zmdi-star active"></ion-icon>
+		<ion-icon class="zmdi zmdi-star active"></ion-icon>
+		<ion-icon class="zmdi zmdi-star active"></ion-icon>
+		<ion-icon class="zmdi zmdi-star "></ion-icon>
+	</div>
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-textarea type="text" rows="5" placeholder="{{'write_your_experience_about_food' | translate}}"></ion-textarea>
+			</ion-item>
+
+			<ion-button size="large" shape="round" class="btn">{{'rate_now' | translate}}</ion-button>
+		</ion-list>
+	</div>
+</ion-content>

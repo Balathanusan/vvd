@@ -1,0 +1,62 @@
+<ion-header>
+	<ion-toolbar>
+	<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			{{'support' | translate}}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+	<div class="banner">
+		<div class="logo_box d-flex">
+			<img src="assets/images/logo.png">
+			<h2>{{'app_title' | translate}}</h2>
+		</div>
+		<div class="container">
+			<ion-row>
+				<ion-col size="6">
+					<div class="contact d-flex">
+						<ion-icon class="ion-text-start zmdi zmdi-email"></ion-icon>
+						<div class="text_box">
+							<h3>{{'email' | translate}}</h3>
+							<h2>help@cookfu.com</h2>
+						</div>
+					</div>
+				</ion-col>
+				<ion-col size="6">
+					<div class="contact d-flex">
+						<ion-icon class="ion-text-start zmdi zmdi-smartphone-android"></ion-icon>
+						<div class="text_box">
+							<h3>{{'phone' | translate}}</h3>
+							<h2>+91 987 654 3210</h2>
+						</div>
+					</div>
+				</ion-col>
+			</ion-row>
+		</div>
+	</div>
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-label position="floating">{{'name' | translate}}</ion-label>
+				<ion-input type="name"></ion-input>
+			</ion-item>
+
+			<ion-item lines="none">
+				<ion-label position="floating">{{'email' | translate}}</ion-label>
+				<ion-input type="email"></ion-input>
+			</ion-item> 
+			
+			<ion-item lines="none">
+				<ion-label position="floating">{{'your_message' | translate}}</ion-label>
+				<ion-input type="email"></ion-input>
+			</ion-item> 
+			<div class="botton_container">
+				<ion-button size="large" shape="round" class="btn">{{'send_us' | translate}}</ion-button>
+			</div>
+		</ion-list>
+	</div>
+</ion-content>

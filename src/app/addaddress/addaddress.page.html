@@ -1,0 +1,199 @@
+ 
+
+  <ion-header [translucent]="true">
+    <ion-toolbar >
+      <ion-buttons slot="start">
+        <ion-back-button icon="ios-arrow-back"></ion-back-button>
+      </ion-buttons>
+      <ion-title slot="start">Add Address</ion-title>
+
+      <!-- <ion-button (click)="loadMap()" shape="round" style="float: right ;">
+        <ion-icon slot="start" name="locate"></ion-icon>
+     
+      </ion-button> -->
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content   no-bounce style="padding: 0;">
+  
+    <div class="map-wrapper" >
+      <div id="map_center" >
+        <img src="assets/icon/locationmapmarker.png" />
+      </div>
+      <div #map id="map" ></div>
+      <div>
+       
+
+      </div>
+     
+    </div>
+    <img (click)="loadMap()" src="assets/icon/Hunt.svg" style="right: 7px;position: absolute;top:3%;background:white;border-radius:5px;box-shadow:0 1px 4px -1px rgba(0,0,0,.3);cursor:pointer;"/>
+  </ion-content>
+
+  <ion-footer no-border>
+
+    <ion-toolbar>
+      <div class="drawer-content">
+        <ion-row>
+          <ion-col style="height: 70px;">
+            <div style=" float: right;margin-top: 0px;"  >
+              <button horizontal="end" size="small" slot="fixed" (click)="calladdaddress()" style=" padding:7px;border-radius: 5px;font-weight:500;font-size:12px;color:#F9552E;">
+                CHANGE
+              </button>
+            </div>
+    <b>{{address}}</b>        
+          </ion-col>
+          
+        </ion-row>
+      
+        <ion-row>
+          <ion-col >
+          
+            <ion-item lines="none">
+              <ion-label position="floating">House /Flat No</ion-label>
+              <ion-input type="name" [(ngModel)]="flatno" #name="ngModel" style="border-bottom: 1px solid rgba(249, 85, 46, 1)"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+       
+        <ion-row>
+          <ion-col >
+            <ion-item lines="none">
+              <ion-label position="floating">Landmark</ion-label>
+              <ion-input type="name" [(ngModel)]="landmark" #name="ngModel" style="border-bottom: 1px solid rgba(249, 85, 46, 1)"></ion-input>
+            </ion-item>
+          
+          </ion-col>
+        </ion-row>
+    
+       
+        <ion-radio-group  (ionChange)="onChangeHandler($event)">
+          <ion-row>
+            <ion-col>
+                
+               <ion-item>
+                <ion-label>Home</ion-label>
+                <ion-radio value="Home" [checked]="this.data.placeopt==='Home'"></ion-radio>
+              </ion-item>
+             </ion-col>
+        
+            <ion-col>
+              <ion-item>
+                <ion-label>Work</ion-label>
+                <ion-radio value="Work" [checked]="this.data.placeopt==='Work'"></ion-radio>
+              </ion-item>
+            </ion-col>
+        
+            <ion-col>
+              <ion-item>
+                <ion-label>Other</ion-label>
+                <ion-radio value="Other" [checked]="this.data.placeopt==='Other'"></ion-radio>
+              </ion-item>
+            </ion-col>
+        
+        </ion-row>
+        </ion-radio-group>
+    
+        <ion-row  *ngIf="this.data.placeopt==='Other'">
+          <ion-col >
+          
+            <ion-item lines="none">
+              <ion-label position="floating">Where</ion-label>
+              <ion-input type="name" [(ngModel)]="otheropt" #name="ngModel" style="border-bottom: 1px solid rgba(249, 85, 46, 1)"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+       
+    
+        <ion-row>
+          <ion-col>
+         
+    
+            <div class="botton_container">
+              <ion-button size="large" shape="round" class="btn" (click)="callSubmitaddress()">Submit Address</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-toolbar>
+  
+  </ion-footer>
+  <!-- <ion-bottom-drawer [minimumHeight]=180 [dockedHeight]=350
+  [shouldBounce]=false [distanceTop]=340>
+  <img (click)="loadMap()" src="assets/icon/Hunt.svg" style="right: 5px;position: fixed;top:-38px;background:white;border-radius:5px;box-shadow:0 1px 4px -1px rgba(0,0,0,.3);cursor:pointer;"/>
+  <div class="drawer-content">
+    <ion-row>
+      <ion-col style="height: 120px;">
+        <div style=" float: right;margin-top: 0px;"  >
+          <button horizontal="end" size="small" slot="fixed" (click)="calladdaddress()" style=" padding:7px;border-radius: 5px;font-weight:500;font-size:12px;color:#F9552E;">
+            CHANGE
+          </button>
+        </div>
+<b>{{address}}</b>        
+      </ion-col>
+      
+    </ion-row>
+  
+    <ion-row>
+      <ion-col >
+      
+        <ion-item lines="none">
+          <ion-label position="floating">House /Flat No</ion-label>
+          <ion-input type="name" [(ngModel)]="flatno" #name="ngModel"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+   
+    <ion-row>
+      <ion-col >
+        <ion-item lines="none">
+          <ion-label position="floating">Landmark</ion-label>
+          <ion-input type="name" [(ngModel)]="landmark" #name="ngModel"></ion-input>
+        </ion-item>
+      
+      </ion-col>
+    </ion-row>
+
+   
+    <ion-radio-group  (ionChange)="onChangeHandler($event)">
+      <ion-row>
+        <ion-col>
+            
+           <ion-item>
+            <ion-label>Home</ion-label>
+            <ion-radio value="Home" [checked]="this.data.placeopt==='Home'"></ion-radio>
+          </ion-item>
+         </ion-col>
+    
+        <ion-col>
+          <ion-item>
+            <ion-label>Work</ion-label>
+            <ion-radio value="Work" [checked]="this.data.placeopt==='Work'"></ion-radio>
+          </ion-item>
+        </ion-col>
+    
+        <ion-col>
+          <ion-item>
+            <ion-label>Other</ion-label>
+            <ion-radio value="Other" [checked]="this.data.placeopt==='Other'"></ion-radio>
+          </ion-item>
+        </ion-col>
+    
+    </ion-row>
+    </ion-radio-group>
+
+
+
+    <ion-row>
+      <ion-col>
+     
+
+        <div class="botton_container">
+          <ion-button size="large" shape="round" class="btn" (click)="callSubmitaddress()">Submit Address</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-bottom-drawer> -->
+
+

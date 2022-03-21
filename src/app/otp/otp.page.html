@@ -1,0 +1,58 @@
+<ion-header class="bg_transparent">
+	<div class="logo_box ion-text-center">
+		<div class="logo">
+			<img src="../../assets\images\vvd-logo-big.png">
+			<!-- <h2>VVD</h2> -->
+			<!-- <h6>Sale</h6> -->
+		</div>
+	</div>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button icon="ios-arrow-back"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'verification_code' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<h3 class="ion-text-center">
+		{{"please_type_the_verification_code" | translate}}
+		<br>{{"sent_to" | translate}} {{getmobile}}
+	</h3>
+	<div class="form">
+		<ion-list lines="none">
+
+			<ion-row>
+				<ion-col >
+					<ion-item lines="none">
+						<ion-input type="number" [(ngModel)]="getotp" value="getotp"  class="ion-text-center"></ion-input>
+					</ion-item>
+				</ion-col>
+				<!-- <ion-col size="3">
+					<ion-item lines="none">
+						<ion-input type="number" value="8" class="ion-text-center"></ion-input>
+					</ion-item>
+				</ion-col>
+				<ion-col size="3">
+					<ion-item lines="none">
+						<ion-input type="number" value="8" class="ion-text-center"></ion-input>
+					</ion-item>
+				</ion-col>
+				<ion-col size="3">
+					<ion-item lines="none">
+						<ion-input type="number" value="7" class="ion-text-center"></ion-input>
+					</ion-item> -->
+				<!-- </ion-col> -->
+			</ion-row>
+			<div class="botton_container">
+				<ion-button size="large" shape="round" class="btn" (click)="goTohome()">Submit</ion-button>
+			</div>
+			<div class="d-flex otpResend"> <span>{{displayTime}}</span> 
+				<ion-button size="small" shape="round" [disabled]="resetOtpDisabled" class="btn reset" (click)="goToResend()">{{'resend' | translate}}</ion-button>
+                <!-- <button [disabled]="resetOtpDisabled" class="reset" (click)="goToResend()">{{'resend' | translate}}</button> -->
+			</div>
+
+			<!-- <h4 class="d-flex">0:48 min left <span class="end" (click)="goToResend()">{{'resend' | translate}}</span></h4> -->
+		</ion-list>
+	</div>
+</ion-content>

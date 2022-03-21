@@ -1,0 +1,183 @@
+<ion-header class="bg_transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button icon="ios-arrow-back" ></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+		<!--	<span class="cart_icon end ion-float-end" (click)="cart()">
+				<ion-icon class="zmdi zmdi-shopping-cart ion-text-start"></ion-icon>
+				<ion-badge>{{getcountfromdb}}</ion-badge>
+			</span>
+			 <span class="cart_icon end ion-float-end">
+				<img *ngIf="!isPageSaved" (click)="pageSavedAction()" class="image" src="../../assets/images/bookmark.svg">
+				<img *ngIf="isPageSaved" class="image" (click)="pageSavedAction()" src="../../assets/images/bookmark (1).svg">
+			</span> -->
+		</ion-title>
+	</ion-toolbar>
+
+	<div class="banner">
+		<div class="banner_img center_img">
+			<!-- <img src="assets/images/r1.jpg" class="crop_img"> -->
+			<ion-slides [options]="slideOptsOne">
+
+				<!-- <ion-slide *ngFor="let data of getResdata.images;">
+				  <div class="slide">
+					<img [src]="data" class="crop_img"> 
+					  </div>
+				</ion-slide> -->
+
+				<div class="slide">
+					<img [src]="getResdataimg" class="crop_img"> 
+					  </div>
+				
+</ion-slides>		
+		</div>
+		<div class="banner_details">
+			<h2 class="d-flex">
+				<span class="item_name">{{getResdata.title}}</span>
+				<span class="end"> ₹ {{getResdata.price}}</span>
+			</h2>
+			
+			<!-- <p>A rich tomato, butter and cream based gravy, lightly spiced. This one is a Punjabi dhaba style recipe. Unlike other cooked vegetable (sabzi) recipes, this one is cooked on a tawa. </p> -->
+			<div class="rating_icon" *ngIf="getRating==0">
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</div>
+			<div class="rating_icon" *ngIf="getRating==1">
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</div>
+			<div class="rating_icon" *ngIf="getRating==2">
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</div>
+			<div class="rating_icon" *ngIf="getRating==3">
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</div>
+			<div class="rating_icon" *ngIf="getRating==4">
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star "></ion-icon>
+				<ion-icon class="zmdi zmdi-star"></ion-icon>
+			</div>
+			<div class="rating_icon" *ngIf="getRating==5">
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+				<ion-icon class="zmdi zmdi-star active"></ion-icon>
+			</div>
+		</div>
+	</div>
+</ion-header>
+
+<ion-content class="bg_color">
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+	<div class="specification">
+		<h2 class="d-flex">
+			<span class="item_name">Details</span>
+		</h2>
+<p>{{getResdata.description}}</p>
+<p><b>Product Name:</b> {{getResdata.title}}</p>
+<p><b>Product category:</b> {{getResdata.category}}</p>
+<p><b>price:</b> {{getResdata.price}}</p>
+<p><b>package Type:</b> {{getResdata.packagetype}}</p>
+
+<p><b>Brand:</b> {{getResdata.brand}}</p>
+
+
+
+
+
+		<!-- <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p> -->
+	</div>
+
+
+	<div class="specification" *ngIf="getResdata.productscheme.status===1">
+		<h2 class="d-flex">
+			<span class="item_name">Product Scheme </span>
+		</h2>
+<p><b>Scheme:</b> <strong class="end" style="color: #0066cb;"> {{getResdata.productscheme.schemeName}} </strong></p>
+<p><b>valid From On:</b> <strong class="end" style="color: #0066cb;"> {{getResdata.productscheme.validFrom}}</strong> </p>
+<p><b>valid Upto:</b>  <strong class="end" style="color: #0066cb;"> {{getResdata.productscheme.validTo}}</strong></p>
+	</div>
+
+
+	<div class="specification" *ngIf="getResdata.rewardpoints.status===1">
+		<h2 class="d-flex">
+			<span class="item_name">Reward Points </span>
+		</h2>
+<p><b>Scheme:</b> <strong class="end"> {{getResdata.rewardpoints.schemeName}} </strong></p>
+<p><b>buying Quantity:</b> <strong class="end"> {{getResdata.rewardpoints.buyingQty}}</strong> </p>
+<p><b>Points:</b>  <strong class="end"> {{getResdata.rewardpoints.points}}</strong></p>
+	</div>
+
+
+
+
+	<div class="tab_container info">
+		<ion-list lines="none">
+		
+			<!-- <ion-item class="status_open">
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>productscheme</span>
+						<strong class="end">{{getResdata.productscheme.schemeName}}</strong>
+					</h3>
+
+					<h3 class="d-flex">
+						<span>valid From On</span>
+						<strong class="end">{{getResdata.productscheme.validFrom}}</strong>
+					</h3>
+
+					<h3 class="d-flex">
+						<span>valid Upto</span>
+						<strong class="end">{{getResdata.productscheme.validTo}}</strong>
+					</h3>
+				</div>
+			</ion-item> -->
+			<!-- <ion-item>
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>Brand</span>
+						<strong class="end">{{getResdata.brand}}</strong>
+					</h3>
+				</div>
+			</ion-item>
+			<ion-item *ngIf="getResdata.discountPrice">
+				<div class="item_inner">
+					<h3 class="d-flex">
+						<span>DiscountPrice</span>
+						<strong class="end"> ₹ {{getResdata.discountPrice}}</strong>
+					</h3>
+				</div>
+			</ion-item> -->
+		
+		</ion-list>
+	</div>
+</ion-content>
+
+<ion-footer no-border class="d-flex">
+	<div class="add-remove d-flex">
+		<ion-icon class="zmdi zmdi-minus" (click)="decrement()"></ion-icon>
+		<h2 class="ion-text-center">{{getquantity}}</h2>
+		<ion-icon class="zmdi zmdi-plus" (click)="increment()"></ion-icon>
+	</div>
+	<ion-button size="large" shape="round" class="btn" (click)="cart()">Go to cart</ion-button>
+</ion-footer>

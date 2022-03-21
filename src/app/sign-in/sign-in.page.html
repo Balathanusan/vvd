@@ -1,0 +1,185 @@
+<ion-header class="bg_transparent">
+	<div class="logo_box ion-text-center">
+		<div class="logo">
+			<img src="../../assets\images\vvd-logo-big.png">
+			<!-- <h2>{{'VVD' | translate}}</h2> -->
+			<!-- <h6>Sale</h6> -->
+		</div>
+	</div>
+	<ion-toolbar>
+		<ion-segment [(ngModel)]="tab" lines="none">
+			<ion-segment-button value="sign_in">
+				<ion-label>
+					{{'sign_in' | translate}}
+				</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value="registers">
+				<ion-label>
+					Sign Up
+				</ion-label>
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<div class="form" [ngSwitch]="tab">
+		<ion-list lines="none" *ngSwitchCase="'sign_in'">			
+			<form [formGroup]="loginForm" name="form-signin" (ngSubmit)="gologinNew()"  novalidate>				
+				<ion-item lines="none">					
+					<ion-input type="mobileNumber" min="0" inputmode="numeric" pattern="[0-9]*" name="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" formControlName="username" required placeholder="Mobile Number"></ion-input>
+					<div *ngIf="submitted && f.username.errors" class="invalid-feedback"> 
+						<div *ngIf="f.username.errors.required">username is required</div>
+					</div>
+				</ion-item>	
+				<!-- <ng-container *ngFor="let validation of form_messages.mobileNumber">
+					<div class="error-message"
+					  *ngIf="loginForm.get('mobileNumber').hasError(validation.type) && (loginForm.get('mobileNumber').dirty || loginForm.get('mobileNumber').touched)">
+					  {{ validation.message }}
+					</div>
+				  </ng-container> -->
+				<ion-item lines="none">						
+					<ion-input type="password" name="password" formControlName="password" required placeholder="Password"  (keyup.enter)="gologinNew()"></ion-input>
+					<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+						<div *ngIf="f.password.errors.required">Password is required</div>
+						<div *ngIf="f.password.errors.minlength">
+								Password must be at least 6 characters
+						</div>
+					</div>
+				</ion-item>
+					<h3 class="ion-text-end" (click)="goToForgotPassword()">{{'forgot_password' | translate}}?</h3>					
+					<div class="botton_container">
+						<ion-button size="large" shape="round" class="btn" title="Sign-in" type="submit">Sign In</ion-button>			
+					</div>
+			</form>			
+		</ion-list>
+
+		<!-- <ion-list lines="none" *ngSwitchCase="'sign_in'">
+			<form name="form-signin" (ngSubmit)="f.form.valid && goTohome()" #f="ngForm" novalidate>
+				<div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+				<div class="input-group mb-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+				<ion-item lines="none">
+					<ion-label position="floating">{{'Username' | translate}}</ion-label>
+					<ion-input type="email" name="username" [(ngModel)]="user.username" #username="ngModel"></ion-input>
+					<div *ngIf="f.submitted && !username.valid" class="help-block">An valid username is required.</div>
+				</ion-item>
+				</div>
+				<div class="input-group mb-4" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+				<ion-item lines="none">
+					<ion-label position="floating">{{'password' | translate}}</ion-label>
+					<ion-input type="password" name="password" [(ngModel)]="user.password" #password="ngModel" (keyup.enter)="goTohome()"></ion-input>
+					<div *ngIf="f.submitted && !password.valid" class="help-block">Password is required.</div>
+				</ion-item>
+				</div>
+				<h3 class="ion-text-end" (click)="goToForgotPassword()">{{'forgot_password' | translate}}?</h3>
+				<div class="botton_container">
+					<ion-button size="large" shape="round" class="btn" type="submit">{{'sign_in' | translate}}</ion-button>
+				</div>
+			</form>
+		</ion-list> -->
+
+		<ion-list lines="none"  *ngSwitchCase="'registers'">
+			<form [formGroup]="registerForm" name="form-registers"    novalidate>
+				<ion-item lines ="none">				
+					<ion-input type="text" name="ret_name" formControlName="ret_name" required placeholder="RetailerName"></ion-input>
+				</ion-item>
+			
+				<ion-item lines="none">					
+					<ion-input  type="text" name="own_name" formControlName="own_name" required placeholder="OwnerName"></ion-input>
+				</ion-item>					
+
+				<ion-item lines="none">
+					
+					<ion-input type="mobileNumber" min="0" inputmode="numeric" pattern="[0-9]*" formControlName="mobile" required placeholder="MobileNo"></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					
+					<ion-input type="mobileNumber" min="0" inputmode="numeric" pattern="[0-9]*" name="alt_mbl_num" formControlName="alt_mbl_num" required placeholder="AlternateNo"></ion-input>
+				</ion-item>
+				<!-- <ion-label (click)="getaddress1()" style="font-weight: bold;color: #0066cb;margin-top: 25px;">{{'GPS LOCATION' | translate}}</ion-label>	  -->
+
+				<!-- <ion-item class="no-last-border"> -->
+
+				<!-- <h3 class="ion-text-end" (click)="getaddress()" style="font-weight: bold;">{{'GPS LOCATION' | translate}}</h3>	 -->
+			<!-- </ion-item> -->
+				<ion-item lines="none">	
+					<ion-button size="small" shape="round" (click)="getaddressDetails()" style="font-weight: bold;color: #0d2741;margin-top: 25px;">{{'GPS LOCATION' | translate}}</ion-button> 
+
+					<ion-label position="floating">Address</ion-label>
+							
+					<ion-input type="text" name="address" formControlName="address" [value]="address" required ></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label position="floating">Area</ion-label>
+
+					<ion-input type="text" name="area" formControlName="area" [value]="area" required ></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label position="floating">Zone</ion-label>
+
+					<ion-input type="text" name="zone" formControlName="zone" [value]="zone" required ></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label position="floating">City</ion-label>
+
+					<ion-input type="text" name="city" formControlName="city" [value]="city" required ></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label position="floating">State</ion-label>
+
+					<ion-input type="text" name="state" formControlName="state" [value]="state" required ></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label position="floating">Latitude</ion-label>
+
+					<ion-input readonly type="text"  name="latitude" formControlName="latitude" [value]="latitude" required ></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label position="floating">Longtitude</ion-label>
+
+					<ion-input  readonly type="text"  name="longitude" formControlName="longitude" [value]="longitude"   required ></ion-input>
+				</ion-item> 
+				<ion-item lines="none">
+					
+					<ion-input type="text" name="upi_id" formControlName="upi_id" required placeholder="UPI Id"></ion-input>
+				</ion-item>
+
+				<!-- <ion-item lines="none">
+					
+					<ion-input type="text" name="ret_img" formControlName="ret_img" required placeholder="Retailar Img"></ion-input>
+				</ion-item> -->
+
+				<!-- <h3 class="ion-text-end" class="btn"  style="font-weight: bold;">{{'Take Retaile Image' | translate}}</h3>				 -->
+
+				<div>
+					
+					<p>
+
+					</p>
+				</div>
+				<img [src]="clickedImage"  style="width: 50px;height: 50px;margin-left: 10px;margin-right: 5px;border-radius: 40px;">
+				<ion-button size="small" shape="round"  name="picker" class="btnsmall" (click)="selectImage()" type="submit1">Retaile Image</ion-button>
+				<div>
+				<img [src]="clickedImageDoc"  style="width: 50px;height: 50px;margin-left: 10px;margin-right: 5px;border-radius: 40px;">
+				<ion-button size="small" shape="round"  name="picker" class="btnsmall" (click)="selectImageDoc()" type="submit2">Document Upload</ion-button>
+				</div>
+				<!-- <img [src]="clickedImage" /> -->
+			
+					<!-- <ion-button size="small" shape="round" class="btn" name="picker" (click)="selectImage()" type="submit1">Retaile Image</ion-button> -->
+
+
+				<!-- <div>					
+						<ion-label>Retailar Image</ion-label>
+						<ion-fab-button (click)="addPhotoToGallery()">						
+							<ion-icon name="ret_img"></ion-icon>
+						</ion-fab-button>								
+				</div> -->
+
+			
+			
+					<ion-button size="large" shape="round" class="btn"   type="submit" (click)="registersubmit()">Register now</ion-button>
+				
+				
+			</form>						
+		</ion-list>
+	</div>
+</ion-content>

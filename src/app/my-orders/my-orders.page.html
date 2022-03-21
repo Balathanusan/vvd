@@ -1,0 +1,50 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title> {{'my_orders' | translate}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color">
+	<div  *ngIf="isListEmpty" style="margin-top: 50px;">
+		<div class="img_box ion-text-center">
+			<img src="assets/images/cartimage.png">
+		</div>
+		<h2 class="ion-text-center">{{'hey' | translate}}, {{getUsername}}</h2>
+		<p class="ion-text-center">
+			Your Order is Empty,Continue to	
+		</p>
+		<div class="btn_container">
+			<div class="botton_box">
+				<ion-button size="large" shape="round" class="btn" (click)="goToHome()">Search</ion-button>
+			</div>
+		
+		</div>
+	</div>
+	<ion-list lines="none">
+		<ion-item *ngFor = "let order of ordersList; let i=index" [ngClass]="faqExpand1 ? 'active' : '' ">
+			<div class="item_inner" *ngIf="order">
+				<div class="item_header d-flex" (click)="navigateTo(order)">
+					<h2 *ngIf="order.month" class="ion-text-end"><strong>{{order.date}}</strong>{{order.month}}</h2>
+					<div class="item_detail">
+						<h3 class="d-flex" >
+							<span class="order_code">order :{{order.orderCode}}</span>
+							<span class="item_price end ion-text-end">₹ {{order.amount}}</span>
+						</h3>
+						<p class="d-flex" style="padding : 0px">
+							<span class="order_code"> {{order.time | date: 'h:mm a'}}</span>
+							<span class="end order_status preparing ion-text-end">{{order.orderStatus | translate}}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</ion-item>
+	</ion-list>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+		<ion-infinite-scroll-content
+		loadingSpinner="bubbles"
+		loadingText="Loading more data...">
+	  </ion-infinite-scroll-content>	  </ion-infinite-scroll>
+</ion-content>

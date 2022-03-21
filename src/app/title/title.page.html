@@ -1,0 +1,22 @@
+<!--
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+
+<ion-content (click)="dismiss()">
+
+</ion-content>
+<ion-footer no-border>
+	<div class="form">
+		<ion-list lines="none">
+			<ion-item lines="none">
+				<ion-label position="floating">{{'add_address_title' | translate}}</ion-label>
+				<ion-input type="name" value="Farm House"></ion-input>
+			</ion-item> 
+			<ion-button size="large" shape="round" class="btn" (click)="dismiss()">{{'save_address' | translate}}</ion-button>
+		</ion-list>
+	</div>
+</ion-footer>
