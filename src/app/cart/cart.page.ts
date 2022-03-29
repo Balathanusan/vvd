@@ -269,6 +269,12 @@ export class CartPage implements OnInit {
       this.http.post(this.API_URL + 'cartproducts', formData, { headers: headers })
         .subscribe(data => {
           console.log(data);
+          //  remove duplicates from array
+          data['response']['data'] = data['response']['data'].filter((thing, index, self) =>
+            index === self.findIndex((t) => (
+              t.id === thing.id
+            ))
+          );
           resolve(data);
           this.loading.dismiss();
           console.log("In response", data['response']);
