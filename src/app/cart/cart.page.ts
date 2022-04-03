@@ -268,16 +268,21 @@ export class CartPage implements OnInit {
     return new Promise((resolve, reject) => {
       this.http.post(this.API_URL + 'cartproducts', formData, { headers: headers })
         .subscribe(data => {
-          console.log(data);
-          //  remove duplicates from array
-          data['response']['data'] = data['response']['data'].filter((thing, index, self) =>
-            index === self.findIndex((t) => (
-              t.id === thing.id
-            ))
-          );
-          resolve(data);
-          this.loading.dismiss();
-          console.log("In response", data['response']);
+          if(data['response']['data']) {
+            console.log(data);
+            //  remove duplicates from array
+            data['response']['data'] = data['response']['data'].filter((thing, index, self) =>
+              index === self.findIndex((t) => (
+                t.id === thing.id
+              ))
+            );
+            resolve(data);
+            this.loading.dismiss();
+            console.log("In response", data['response']);
+          }else {
+            resolve(data);
+            this.loading.dismiss();
+          }
           /*       if (data['response'].code == 1) {
                    this.getcartvalue = data['response']['data'];
                    console.log("In Success",this.getcartvalue);

@@ -9,7 +9,7 @@
 				<strong>{{appname}}</strong>
 			</h2>
 
-			<span class="ion-float-end cart_icon"  (click)="cartt()">
+			<span class="ion-float-end cart_icon"  (click)="goTocart()">
 				<ion-icon class="zmdi zmdi-shopping-cart ion-text-start"></ion-icon>
 				<ion-badge>{{getcountfromdb}}</ion-badge>
 			</span>
@@ -143,5 +143,5 @@
 </ion-content>
 <ion-footer no-border class="d-flex" *ngIf="getcountfromdb != 0">
 		
-	<ion-button size="large" shape="round" class="btn" (click)="cart()">Go to cart</ion-button>
+	<ion-button size="large" shape="round" class="btn" (click)="goTocart()">Go to cart</ion-button>
 </ion-footer> 
