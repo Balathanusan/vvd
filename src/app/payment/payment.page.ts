@@ -26,7 +26,7 @@ export class PaymentPage implements OnInit {
   // API_URL = 'http://pos.demoplaces.in/apis/';
   API_URL = 'http://vvdconnect.democodes.in/apis/'
   disableButton = true;
-  advancedAmount:any;
+  advancedAmount:any = "";
   chequeNumber = "";
 
   constructor(public db: DatabaseProvider, private fun: FunctionsService, private http: HttpClient, public loading: LoadingService, private route: Router, private router: ActivatedRoute) {
@@ -68,6 +68,65 @@ export class PaymentPage implements OnInit {
       formData.append('paymentType', '1');
       formData.append('products', cart);
       formData.append('advancedAmt', this.advancedAmount);
+
+      
+
+
+
+      console.log("formdata" + formData)
+
+      var headers = new HttpHeaders();
+      headers.append("Accept", 'application/json');
+      headers.append('Content-Type', 'application/json');
+
+
+      this.http.post(this.API_URL + 'checkoutorder', formData, { headers: headers })
+        .subscribe(data => {
+          console.log(data);
+
+          this.loading.dismiss();
+          if (data['response'].code == 1) {
+            let totalAmount = data['response']['data']['grandAmount'];
+            console.log("finalprice",this.finalprice);
+            console.log("success response",totalAmount,data['response']['data']['grandAmount']);
+            // if (this.finalprice == totalAmount) {
+            //   console.log("total amount equals to final price");
+            //   this.db.deleteAll();
+            //   this.finalprice="";
+            //   this.fun.presentToast(data['response'].message, true, 'bottom', 2100);
+            //   this.route.navigate(['./confirm-order', { orderdetail: JSON.stringify(data) }]);
+            // }
+            // else
+            // {
+            //   this.fun.presentToast('Please try again', true, 'bottom', 2100);
+
+            // }
+               this.db.deleteAll();
+               this.finalprice="";
+               this.fun.presentToast(data['response'].message, true, 'bottom', 2100);
+               this.route.navigate(['./confirm-order', { orderdetail: JSON.stringify(data) }]);
+          }
+          else {
+            this.fun.presentToast(data['response'].message, true, 'bottom', 2100);
+
+          }
+
+        }, error => {
+          this.loading.dismiss();
+          console.log(error);
+        });
+
+    }
+    else if (this.data.pay == 'cheque') {
+      this.loading.present();
+      const formData = new FormData();
+      formData.append('APIKEY', this.getApikey);
+      formData.append('couponCode', this.couponCode);
+      formData.append('addressId', this.addressid);
+      formData.append('paymentType', '3');
+      formData.append('products', cart);
+      formData.append('advancedAmt', this.advancedAmount);
+      formData.append('chequeNumber', this.chequeNumber);
 
       
 

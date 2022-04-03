@@ -63,8 +63,22 @@
 					<div class="grand_total">
 						<h2 class="d-flex">
 							<span class="payment_option">Payment Type </span>
-							<!-- <span class="end ion-text-end">{{ordertype}}</span> -->
-							<span class="end item_price ion-text-end">Cash on delivery</span>
+							<span class="end ion-text-end">{{ordertype}}</span>
+							<!-- <span class="end item_price ion-text-end">Cash on delivery</span> -->
+						</h2>
+					</div>
+					<div class="grand_total" *ngIf="advanceAmount">
+						<h2 class="d-flex">
+							<span class="payment_option">Advance amount </span>
+							<span class="end ion-text-end">₹ {{advanceAmount}}</span>
+							<!-- <span class="end item_price ion-text-end">Cash on delivery</span> -->
+						</h2>
+					</div>
+					<div class="grand_total" *ngIf="chequeNumber">
+						<h2 class="d-flex">
+							<span class="payment_option">Cheque Number </span>
+							<span class="end ion-text-end">{{chequeNumber}}</span>
+							<!-- <span class="end item_price ion-text-end">Cash on delivery</span> -->
 						</h2>
 					</div>
 					<div class="total">

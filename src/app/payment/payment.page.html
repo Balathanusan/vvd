@@ -36,10 +36,6 @@
 					</ion-label>
 					<ion-radio slot="start" value="cheque" [checked]="this.data.pay==='cheque'"></ion-radio>
 				</ion-item>
-				<ion-item *ngIf="data.pay == 'cheque'">
-					<ion-input [value]="chequeNumber"></ion-input>
-				</ion-item>
-				{{chequeNumber}}
 				<!-- <ion-item>
 					<ion-label>
 						Online Payment
@@ -47,6 +43,7 @@
 					<ion-radio slot="start" value="onlinepayment" [checked]="this.data.pay==='onlinepayment'"></ion-radio>
 				</ion-item> -->
 			</ion-radio-group>
+			<ion-input *ngIf="data.pay == 'cheque'" type="number" placeholder="Enter Cheque number" [(ngModel)]="chequeNumber" style="border: 1px solid #c9c9c9;border-radius: 5px;"></ion-input>
 		</ion-list>
 		
 		<!-- <div class="form">

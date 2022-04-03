@@ -17,17 +17,20 @@ export class ConfirmOrderPage implements OnInit {
   grantTotal;
   ordertype: any;
   couponDiscount;
+  advanceAmount:any = "";
+  chequeNumber:any;
 
   constructor(private route: Router, private router: ActivatedRoute) {
 
     this.router.params.subscribe(params => {
-
       this.orderdetail = JSON.parse(params['orderdetail']);
       this.ordertype = this.orderdetail.response.data.paymentType;
       this.totalamount = this.orderdetail.response.data.totalAmount;
       this.totalTax = this.orderdetail.response.data.totalTax;
       this.orderdetailproducts = this.orderdetail.response.data.orderedProducts;
       this.grantTotal= this.orderdetail.response.data.grandAmount;
+      this.chequeNumber = this.orderdetail.response.data.chequeNumber;
+      this.advanceAmount = this.orderdetail.response.data.advanceAmt;
       // this.grantTotal = this.totalTax + this.totalamount;
       // this.grantTotal = Math.round(this.grantTotal);
       // this.couponDiscount = this.orderdetail.response.data.couponDiscount;
