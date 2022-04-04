@@ -240,4 +240,12 @@ console.log("changes observed in service",product);
   // isAuthenticated() {
   //   return this.authenticationState.value;
   // }
+
+
+
+/////////jsr
+getProducts(url,apiKey){
+  return this.http.get(`${API_URLothers}products?APIKEY=${apiKey}${url}`) .pipe(map((res: Response) => res));
+}
+
 }

@@ -99,49 +99,56 @@ export class SearchPage implements OnInit {
 
   ionViewWillLeave() {
     if (this.loading) {
-      console.log("ion view will leave called", this.loading);
       this.loading.dismiss();
       this.contentLoaded = false;
     }
   }
 
   async ionViewWillEnter() {
-    this.loading.present();
-    console.log("loading presented...");
+    // this.router.params.subscribe((params) => {
+    //   const data = JSON.parse(params.data);
+
+    //   let query = "";
+    //   for (const key in data) {
+    //     const element = data[key];
+    //     if (element.length) {
+    //       query = `${query}&${key}=${element}`;
+    //     }
+    //   }
+    //   this.authService
+    //     .getProducts(query, localStorage.getItem("apikey"))
+    //     .subscribe((res: any) => (this.items = res.response.data));
+    // });
+     this.loading.present();
     this.getUsername = localStorage.getItem("ret_name");
-    console.log("before this content loaded", this.loggeduserid);
-    this.contentLoaded = false;
-    console.log("iddddd1", this.loggeduserid);
-    setTimeout(() => {
-      console.log("set timeout function");
-      // this.contentLoaded = true;
-      if (this.infiniteScroll) {
-        this.infiniteScroll.disabled = false;
-      }
-    }, 1000);
-    this.router.params.subscribe((params) => {
-      if (params && params["catid"]) {
-        this.catid = JSON.parse(params["catid"]);
-        this.filterParamValue = null;
-      } else if (params && params["data"]) {
-        this.filterParamValue = JSON.parse(params["data"]);
-      }
-    });
-    this.items = [];
-    this.callapi(this.catid, this.filterParamValue);
-    this.calldata();
-    this.loggeduserid = localStorage.getItem("loggeduserid");
-    console.log("iddddd", this.loggeduserid);
-    await this.db.getAllrecords(this.loggeduserid).then((res) => {
-      this.getdbvalues = res;
-    });
-    for (var i = 0; i < this.getdbvalues.length; i++) {
-      this.getcountfromdb =
-        this.getcountfromdb + this.getdbvalues[i].itemQuantity;
-    }
+     this.contentLoaded = false;
+     setTimeout(() => {
+        this.contentLoaded = true;
+       if (this.infiniteScroll) {
+         this.infiniteScroll.disabled = false;
+       }
+     }, 1000);
+     this.router.params.subscribe((params) => {
+       if (params) {
+         this.filterParamValue = JSON.parse(params["data"]);
+         this.catid = JSON.parse(params.data)["catid"]
+       }
+     });
+     this.items = [];
+     this.callapi(this.catid, this.filterParamValue);
+     this.calldata();
+     this.loggeduserid = localStorage.getItem("loggeduserid");
+     await this.db.getAllrecords(this.loggeduserid).then((res) => {
+       this.getdbvalues = res;
+     });
+     for (var i = 0; i < this.getdbvalues.length; i++) {
+       this.getcountfromdb =
+         this.getcountfromdb + this.getdbvalues[i].itemQuantity;
+     }
   }
 
   ngOnInit() {}
+
   async callapi(catid, filterParam) {
     this.getApikey = localStorage.getItem("apikey");
     this.loadedDataCount = 6;
@@ -150,85 +157,54 @@ export class SearchPage implements OnInit {
   }
 
   async loadProductList(catid, count, filterParam) {
-    console.log("In catid", catid);
-    console.log("Incount", count);
-    console.log("In filterParam", filterParam);
-    await this.authService
+    this.authService
       .getProductlist(this.getApikey, catid, count, filterParam)
       .subscribe(async (res) => {
         this.getProductList = await this.getProductListValues(
           res["response"]["data"]
         );
-        console.log(
-          "getProductList=================++++++++",
-          this.getProductList
-        );
+
         this.totalRecordCount = res["response"]["data"].recordsTotal;
-        //   let getschemeStatus= res['response']['data']['productscheme'].status;
-        // this.items = this.getProductList;
-        //console.log("getschemeStatus",getschemeStatus);
-        console.log("totcount", this.totalRecordCount);
         if (this.totalRecordCount <= 6) {
-          console.log("In Side IF");
           this.items = [];
-          console.log("In Side IF", this.changedProduct);
           for (let i = 0; i < this.totalRecordCount; i++) {
-            console.log("In loadedItemLength IN");
             if (this.changedProduct) {
-              console.log("In changedProduct IF", this.changedProduct);
-              console.log("In getProductList IF", this.getProductList[i].id);
-              console.log("In changedProduct IF", this.changedProduct.id);
               if (this.getProductList[i].id === this.changedProduct.id) {
                 this.getProductList[i].currentItems =
                   this.changedProduct.itemQuantity;
               }
             }
-            console.log("In IF PUSH", this.getProductList[i]);
             this.items.push(this.getProductList[i]);
           }
-          console.log("IF Item List....", this.items);
         } else {
-          console.log("In Side ELSE", this.items);
-          console.log("In changedProduct ELSE", this.changedProduct);
           let loadedItemLength = this.items.length;
           for (let i = loadedItemLength; i < count; i++) {
-            console.log("In loadedItemLength ELSE");
             if (this.changedProduct) {
-              console.log("In getProductList ELSE", this.getProductList[i].id);
-              console.log("In changedProduct ELSE", this.changedProduct.id);
               if (this.getProductList[i].id === this.changedProduct.id) {
                 this.getProductList[i].currentItems =
                   this.changedProduct.itemQuantity;
               }
             }
-            console.log("In PUSH ELSE", this.getProductList[i]);
             this.items.push(this.getProductList[i]);
           }
-          console.log("ELSE Item List....", this.items);
         }
         this.contentLoaded = true;
         this.loading.dismiss();
-        console.log("loading dismissed.....");
       });
-    console.log("loading dismissed.....");
     let uniqueArrayIds = [];
     let uniqueArrayElements = [];
-    console.log("Before Item List....", this.items);
     for (let itemIndex = 0; itemIndex < this.items.length; itemIndex++) {
       let item = this.items[itemIndex];
       if (uniqueArrayIds.indexOf(item.id) === -1) {
-        console.log("uniqueArrayIds...." + item.id);
         uniqueArrayIds.push(item.id);
         uniqueArrayElements.push(item);
       }
     }
     this.items = uniqueArrayElements;
-    console.log("Final Item List....", this.items);
   }
 
   async getProductCountFromArray(productId, dataDB) {
     var countQty = 0;
-    console.log("getProductCountFromArray====", dataDB);
     if (dataDB) {
       for (var i = 0; i < dataDB.length; i++) {
         if (dataDB[i].id == productId) {
@@ -246,12 +222,11 @@ export class SearchPage implements OnInit {
     await this.db.getAllrecords(userId).then((res) => {
       data = res;
     });
-    console.log("calldata=====", data);
     return data;
   }
   async getProductCountFromDB(productId, userId) {
     let countval = 0;
-    await this.db.getRecordByID(userId, productId).subscribe((res: any) => {
+    this.db.getRecordByID(userId, productId).subscribe((res: any) => {
       if (res.length == 0) {
         countval = 0;
       } else {
@@ -266,19 +241,14 @@ export class SearchPage implements OnInit {
     var userId = localStorage.getItem("loggeduserid");
 
     let dataDB = await this.calldata();
-    console.log("dataDB++++++++++++++++", dataDB);
     for (let index in datas) {
-      console.log("dataaafor", datas);
       if (index !== "recordsTotal") {
-        console.log("dataaafor index", index);
         var productId = datas[index].id;
         let countQty = await this.getProductCountFromArray(productId, dataDB);
-        console.log("countQty index", countQty);
         datas[index].currentItems = countQty;
         products.push(datas[index]);
       }
     }
-    console.log("products index", products);
     return products;
   }
 
@@ -442,7 +412,7 @@ export class SearchPage implements OnInit {
   async callProductDetails(id) {
     this.loading.present();
     this.getApikey = localStorage.getItem("apikey");
-    await this.authService
+    this.authService
       .getProductDetails(this.getApikey, id)
       .subscribe(async (res) => {
         this.loading.dismiss();
