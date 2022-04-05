@@ -123,9 +123,9 @@ getOrderDetails(data,orderCode)
 
 }
 
-getOrderchangeOrderStatusDetails(data,orderCode)
+getOrderchangeOrderStatusDetails(data,orderCode,status)
 {
-  return this.http.get(API_URLothers + "changeOrderStatus?"+"APIKEY="+data+"&orderId="+orderCode).pipe(map((res: Response) => res));
+  return this.http.get(`${API_URLothers}changeStatus?APIKEY=${data}&orderId=${orderCode}&status=${status}`).pipe(map((res: Response) => res));
 
 }
 changeOrderStatus

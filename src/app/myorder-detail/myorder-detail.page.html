@@ -47,16 +47,14 @@
           <div class="order_steps d-flex" style="justify-content: center">
             <div
               class="order_step ion-text-center"
-              [ngClass]="(orderStatus === 1 || orderStatus === 2 || orderStatus === 3
-						 || orderStatus === 4 || orderStatus === 5) ? 'active' : ''"
+              [ngClass]="(orderStatus >=1) ? 'active' : ''"
             >
               <p>{{'placed' | translate}}</p>
               <ion-icon class="zmdi zmdi-check-all"></ion-icon>
             </div>
             <div
               class="order_step ion-text-center"
-              [ngClass]="(orderStatus === 2 || orderStatus === 3 || 
-						orderStatus === 4 || orderStatus === 5) ? 'active' : ''"
+              [ngClass]="(orderStatus >=2) ? 'active' : ''"
             >
               <p>{{'In progress' | translate}}</p>
               <ion-icon class="zmdi zmdi-dropbox"></ion-icon>
@@ -73,11 +71,18 @@
 						</div> -->
             <div
               class="order_step ion-text-center"
-              [ngClass]="orderStatus === 3 ? 'active' : ''"
+              [ngClass]="orderStatus >= 3 ? 'active' : ''"
             >
               <p>{{'delivered' | translate}}</p>
               <ion-icon class="zmdi zmdi-home"></ion-icon>
             </div>
+            <div
+            class="order_step ion-text-center"
+            [ngClass]="orderStatus >= 4 ? 'active' : ''"
+          >
+            <p>{{'Recieved' | translate}}</p>
+            <ion-icon class="zmdi zmdi-home"></ion-icon>
+          </div>
           </div>
           <div class="order_items">
             <div class="item" *ngFor="let item of orderedProducts">
@@ -142,7 +147,7 @@
                 class="btn"
                 type="submit"
                 (click)="submitFlag()"
-                >Submit & Close Order</ion-button
+                >Order Recieved</ion-button
               >
             </div>
           </div>

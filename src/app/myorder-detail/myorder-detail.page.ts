@@ -22,7 +22,7 @@ export class MyorderDetailPage implements OnInit {
   order: any = {};
   orderCode;
   getApikey;
-  orderStatus;
+  orderStatus
   OrderFullDetail: any = {};
   orderedProducts: any;
   totalAmount;
@@ -78,13 +78,12 @@ export class MyorderDetailPage implements OnInit {
       });
   }
 
-  async submitFlag() {
+   submitFlag() {
     this.loading.present();
-    await this.authService
-      .getOrderchangeOrderStatusDetails(this.getApikey, this.orderId)
-      .subscribe(async (res) => {
-        let responseValues = res["response"].data;
-        console.log("responseva" + responseValues);
+     this.authService
+      .getOrderchangeOrderStatusDetails(this.getApikey, this.orderId,4)
+      .subscribe((res) => {
+        console.log(res);
         this.loading.dismiss();
       });
   }
