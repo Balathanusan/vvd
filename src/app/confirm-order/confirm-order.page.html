@@ -67,7 +67,7 @@
 							<!-- <span class="end item_price ion-text-end">Cash on delivery</span> -->
 						</h2>
 					</div>
-					<div class="grand_total" *ngIf="advanceAmount">
+					<div class="grand_total" *ngIf="advanceAmount && !chequeNumber">
 						<h2 class="d-flex">
 							<span class="payment_option">Advance amount </span>
 							<span class="end ion-text-end">₹ {{advanceAmount}}</span>

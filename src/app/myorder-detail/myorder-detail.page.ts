@@ -22,7 +22,7 @@ export class MyorderDetailPage implements OnInit {
   order: any = {};
   orderCode;
   getApikey;
-  orderStatus
+  orderStatus;
   OrderFullDetail: any = {};
   orderedProducts: any;
   totalAmount;
@@ -64,6 +64,7 @@ export class MyorderDetailPage implements OnInit {
       .getOrderDetails(this.getApikey, this.orderCode)
       .subscribe(async (res) => {
         const { data } = res["response"];
+        console.log("INITIAL STATUS----->", data.orderStatus);
         this.orderStatus = data.orderStatus;
         this.orderId = data.orderId;
         this.orderedProducts = data.orderedProducts;
@@ -73,17 +74,20 @@ export class MyorderDetailPage implements OnInit {
         this.grandTotal = this.totalAmount - this.discountAmout;
         this.couponCode = data.couponCode;
         this.advanceAmount = data.advanceAmt;
-        this.chequeNumber=data.chequeNumber
+        this.chequeNumber = data.chequeNumber;
         this.loading.dismiss();
       });
   }
 
-   submitFlag() {
+  submitFlag() {
     this.loading.present();
-     this.authService
-      .getOrderchangeOrderStatusDetails(this.getApikey, this.orderId,4)
+    this.authService
+      .getOrderchangeOrderStatusDetails(this.getApikey, this.orderId, 4)
       .subscribe((res) => {
         console.log(res);
+        if (res["response"].status == "success") {
+          this.orderStatus = 4;
+        }
         this.loading.dismiss();
       });
   }
