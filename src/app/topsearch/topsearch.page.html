@@ -13,15 +13,14 @@
 		<ion-searchbar debounce="500"  (ionChange)="getItems($event)" class="ion-no-padding"  searchIcon="hide" placeholder=""></ion-searchbar>
 		
 	</div>
-	<ion-list >
-		<ion-item *ngFor="let item of items" (click)="openProduct(item.id)">{{ item.description }}</ion-item>
-	</ion-list>
 
 
 </ion-header>
 
 <ion-content style="background-color: white;">
-
+	<ion-list >
+		<ion-item *ngFor="let item of items" (click)="openProduct(item.id)">{{ item.description }}</ion-item>
+	</ion-list>
   <!-- <ion-list *ngIf="isItemAvailable">
 		<ion-item *ngFor="let item of items">
 			<p>{{ item.description }}</p>
