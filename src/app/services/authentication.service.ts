@@ -13,9 +13,12 @@ const TOKEN_KEY = "auth-token";
 const API_URL = "http://pos.demoplaces.in/secures/";
 // const API_URLothers = 'http://pos.demoplaces.in/apis/';
 //const API_URL = 'http://vvdconnect.democodes.in/secures/';
-const API_URLothers = "http://vvdconnect.democodes.in/apis/";
+// const API_URLothers = "http://vvdconnect.democodes.in/apis/";
 //const API_URLothers = 'http://diwalisale.demoplaces.in/apis/';
-const API_NEW = "http://vvdconnect.democodes.in/apis/";
+// const API_NEW = "http://vvdconnect.democodes.in/apis/";
+
+const API_URLothers = "http://vvdconnect.in/";
+const API_NEW = "http://vvdconnect.in/";
 
 @Injectable({
   providedIn: "root",

@@ -1,26 +1,32 @@
 <ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-back-button icon="ios-arrow-back"></ion-back-button>
-		</ion-buttons>
-		<ion-title>
-      Search 
-    </ion-title>
-	</ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="ios-arrow-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Search </ion-title>
+  </ion-toolbar>
 
-	<div class="search_box d-flex">
-		<ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
-		<ion-searchbar debounce="500"  (ionChange)="getItems($event)" class="ion-no-padding"  searchIcon="hide" placeholder=""></ion-searchbar>
-		
-	</div>
-
-
+  <div class="search_box d-flex">
+    <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+    <ion-searchbar
+      debounce="500"
+      (ionChange)="getItems($event)"
+      class="ion-no-padding"
+      searchIcon="hide"
+      placeholder=""
+    ></ion-searchbar>
+  </div>
 </ion-header>
 
-<ion-content style="background-color: white;">
-	<ion-list >
-		<ion-item *ngFor="let item of items" (click)="openProduct(item.id)">{{ item.description }}</ion-item>
-	</ion-list>
+<ion-content style="background-color: white">
+  <div *ngIf="isSearching" style="text-align: center; padding: 1rem">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="openProduct(item.id)"
+      >{{ item.description }}</ion-item
+    >
+  </ion-list>
   <!-- <ion-list *ngIf="isItemAvailable">
 		<ion-item *ngFor="let item of items">
 			<p>{{ item.description }}</p>
@@ -28,5 +34,4 @@
 			<p>{{ item.description }}</p>
 		</ion-item>
 	</ion-list> -->
-	
 </ion-content>

@@ -15,6 +15,7 @@ export class TopsearchPage implements OnInit {
   items = [];
   isItemAvailable = false;
   getApikey: any;
+  isSearching = false;
 
   initializeItems() {
     // this.items = ["","", ""];
@@ -48,7 +49,6 @@ export class TopsearchPage implements OnInit {
     }
   }
   openProduct(id) {
-
     this.loading.present();
     this.authService
       .getProductDetails(localStorage.getItem("apikey"), id)
@@ -59,7 +59,8 @@ export class TopsearchPage implements OnInit {
       });
   }
   gotoSearch(value) {
-    this.loading.present();
+    // this.loading.present();
+    this.isSearching = true;
     this.getApikey = localStorage.getItem("apikey");
 
     var headers = new HttpHeaders();
@@ -69,7 +70,8 @@ export class TopsearchPage implements OnInit {
     this.authService
       .getSearchDetails(this.getApikey, value)
       .subscribe((res) => {
-        this.loading.dismiss();
+        // this.loading.dismiss();
+        this.isSearching = false;
         this.items = res["data"];
         // if(this.items)
         this.isItemAvailable = true;
