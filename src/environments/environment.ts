@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API: "http://vvdconnect.in/apis/",
+  API_SECURE: "http://vvdconnect.in/secures/",
+  // API: "http://vvdconnect.democodes.in/apis/",
+  // API_SECURE: "http://vvdconnect.democodes.in/secures/",
+  POS_SECURE: "http://pos.demoplaces.in/secures/",
 };
 
 /*

@@ -8,17 +8,18 @@ import { User } from "../model/user";
 import { Register } from "../model/register";
 import { LoadingService } from "../../providers/loadingservice";
 import { SignInPage } from "../sign-in/sign-in.page";
+import { environment } from "../../environments/environment";
 
 const TOKEN_KEY = "auth-token";
-const API_URL = "http://pos.demoplaces.in/secures/";
+const API_URL = environment.POS_SECURE;
 // const API_URLothers = 'http://pos.demoplaces.in/apis/';
 //const API_URL = 'http://vvdconnect.democodes.in/secures/';
 // const API_URLothers = "http://vvdconnect.democodes.in/apis/";
 //const API_URLothers = 'http://diwalisale.demoplaces.in/apis/';
 // const API_NEW = "http://vvdconnect.democodes.in/apis/";
 
-const API_URLothers = "http://vvdconnect.in/";
-const API_NEW = "http://vvdconnect.in/";
+const API_URLothers = environment.API;
+const API_NEW = environment.API;
 
 @Injectable({
   providedIn: "root",
