@@ -28,8 +28,8 @@
 </ion-header>
 
 <ion-content style="background-color: white">
-  <div class="header_banner">
-    <ion-slides class="slideroption" [options]="slideOptsOne">
+  <div class="header_banner headerBannerWrapper">
+    <ion-slides class="" pager="true" [options]="slideOptsOne">
       <ion-slide
         *ngFor="let banner of bannersList"
         (click)="getbrandbyBanner(banner.id)"
@@ -41,27 +41,29 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div class="like_to_order">
-    <h2><b>TOP BRANDS</b></h2>
-  </div>
-  <ion-slides
-    [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }"
-  >
-    <ion-slide
-      *ngFor="let brands of getBrandValue"
-      (click)="getcategorybybrand(brands.id)"
-      style="width: 150px; height: 200px; border: 2px solid #f8f8f8"
+  <div class="topBrandsWrapper">
+    <div class="like_to_order secTitle">
+      <h2><b>TOP BRANDS</b></h2>
+    </div>
+    <ion-slides
+      [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }"
     >
-      <ion-col>
-        <div class="imgWrapper topBrands">
-          <img [src]="brands.img" class="crop_img" />
-        </div>
+      <ion-slide
+        *ngFor="let brands of getBrandValue"
+        (click)="getcategorybybrand(brands.id)"
+        style="width: 150px; height: 200px; border: 2px solid #f8f8f8"
+      >
+        <ion-col>
+          <div class="imgWrapper topBrands">
+            <img [src]="brands.img" class="crop_img" />
+          </div>
 
-        <!-- <ion-img style="pointer-events:none" src="brands.img"></ion-img> -->
-        <ion-label>{{brands.title}}</ion-label>
-      </ion-col>
-    </ion-slide>
-  </ion-slides>
+          <!-- <ion-img style="pointer-events:none" src="brands.img"></ion-img> -->
+          <ion-label>{{brands.title}}</ion-label>
+        </ion-col>
+      </ion-slide>
+    </ion-slides>
+  </div>
   <div class="like_to_order">
     <h2><b> TOP CATEGORIES</b></h2>
   </div>
