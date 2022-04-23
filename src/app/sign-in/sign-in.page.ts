@@ -77,8 +77,8 @@ export class SignInPage implements OnInit {
   public response: any;
   public logresponse: any;
   public regresponse: any;
-  clickedImage = "../assets/images/user-circle.png";
-  clickedImageDoc = "../assets/images/user-circle.png";
+  clickedImage = "../assets/images/person-outline.png";
+  clickedImageDoc = "../assets/images/document-attach-outline.png";
   ImageUploadCheck = 2;
   upiidValue: any;
   document: any;
@@ -169,6 +169,7 @@ export class SignInPage implements OnInit {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
     };
     this.camera.getPicture(options).then(
       (imageData) => {
@@ -193,6 +194,7 @@ export class SignInPage implements OnInit {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
     };
     this.camera.getPicture(options).then(
       (imageData) => {
